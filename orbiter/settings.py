@@ -146,11 +146,19 @@ EMAIL_USE_TLS = True
 SMTP_DEV = env.bool("SMTP_DEV", 0)
 ADMIN_EMAIL = env.str("ADMIN_EMAIL")
 
+###
+
+
+###
+
 if DEBUG and SMTP_DEV:
-    EMAIL_USE_TLS = False
+    EMAIL_USE_TLS = True
+    # originally this was false
 
 if DEBUG and not SMTP_DEV:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
 
 if DEBUG:
     INTERNAL_IPS = [

@@ -13,14 +13,7 @@ def send_email(request):
             send_mail(
                 "Subject here",
                 "Here is the message.",
-                "from@example.com",
-                ["quirin.koch@gmail.com"],
-                fail_silently=False,
-            )
-            send_mail(
-                "Subject here",
-                "Here is the message.",
-                "from@example.com",
+                "hey@opportunity-orbiter.com",
                 ["quirin.koch@gmail.com"],
                 fail_silently=False,
             )
