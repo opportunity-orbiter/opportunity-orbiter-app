@@ -1,3 +1,25 @@
+#
+
+
+## Todos
+
+5. Namespacing URL Names
+If you have multiple apps, it's a good practice to namespace your URL names to avoid conflicts.
+
+In App-Level urls.py:
+
+python
+Copy code
+app_name = 'myapp'
+urlpatterns = [
+    # ...
+]
+Using Namespaced URLs:
+
+In templates: {% url 'myapp:url_name' %}
+In views: reverse('myapp:url_name')
+
+
 # Sidewinder
 
 <figure markdown>
@@ -75,5 +97,5 @@ Sidewinder is opinionated to provide smooth experience from starting a new proje
   - [Fedora](https://getfedora.org/) as the compatible operating system
   - [PostgreSQL](https://www.postgresql.org/) as the database
   - [Caddy](https://caddyserver.com/) as the reverse proxy server
-  - [gunicorn](https://gunicorn.org/) as the WSGI HTTP Server 
+  - [gunicorn](https://gunicorn.org/) as the WSGI HTTP Server
   - `systemd` service

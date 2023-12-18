@@ -7,8 +7,8 @@ from django.utils.translation import gettext_lazy as _
 from huey import crontab
 from huey.contrib import djhuey as huey
 
-from appname.core.models import User
-from appname.core.services.email import EmailService
+from orbiter.core.models import User
+from orbiter.core.services.email import EmailService
 
 
 @huey.db_task()

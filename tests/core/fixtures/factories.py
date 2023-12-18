@@ -3,7 +3,7 @@ from django.contrib.auth.hashers import make_password
 from pytest_factoryboy import register
 from rest_framework.authtoken.models import Token
 
-from appname.core.models import User
+from orbiter.core.models import User
 
 from .defaults import DEFAULT_PASSWORD
 

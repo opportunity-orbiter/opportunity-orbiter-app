@@ -8,8 +8,8 @@ git_url: git@github.com:stribny/sidewinder.git
 git_key_file: /path/to/.ssh/id_rsa
 django_secret_key: djangosecretkey
 django_ssl: 0
-django_default_from_email: sidewinder@example.com
-django_server_email: sidewinder@example.com
+django_default_from_email: info@opportunity-orbiter.com
+django_server_email: info@opportunity-orbiter.com
 django_email_host:
 django_email_port: 587
 django_email_host_user:

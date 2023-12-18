@@ -26,6 +26,15 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("terms/", views.terms, name="terms"),
     path("feedback/", views.feedback, name="feedback"),
+    # laboratory
+    path("laboratory/", views.index, name="index"),
+    # dashboard
+    path("dashboard/", views.index, name="index"),
+    # crawler
+    path("crawler/", views.index, name="index"),
+    # path("crawler/", include("orbiter.crawler.urls")),
+    path("laboratory/", include("orbiter.laboratory.urls")),
+    # Add more paths to include other apps
 ]
 
 if settings.DEBUG:
