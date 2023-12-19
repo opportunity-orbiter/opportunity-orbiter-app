@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "Sidewinder"
+name = "Opportunity Orbiter"
 version = "0.1.0"
 description = "Django starter kit"
-authors = ["Petr Stribny <petr@stribny.name>"]
+authors = ["Quirin Koch", "Alex Krueger", "Petr Stribny <petr@stribny.name>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-Django = "4.2.4"
+python = "3.11.6"
+Django = "5.0"
 djangorestframework = "3.14.0"
 django-extensions = "3.2.3"
 Faker = "19.2.0"
@@ -26,7 +26,6 @@ rich = "13.5.2"
 huey = "2.4.5"
 redis = "4.6.0"
 django-huey-monitor = "^0.7.1"
-sendgrid = "^6.11.0"
 
 [tool.poetry.group.dev.dependencies]
 django-browser-reload = "1.11.0"
