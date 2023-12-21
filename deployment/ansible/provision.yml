@@ -244,7 +244,7 @@
         recursive: no
         key_file: "{{ git_key_file }}"
         single_branch: yes
-        version: "{{ app_version | default('master', true) }}"
+        version: "{{ app_version | default('main', true) }}"
       delegate_to: localhost
       become: no
       run_once: true
