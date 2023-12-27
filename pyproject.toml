@@ -17,7 +17,7 @@ drf-spectacular = "0.26.4"
 drf-spectacular-sidecar = "2023.8.1"
 django-environ = "^0.10.0"
 gunicorn = "21.2.0"
-psycopg2-binary = "2.9.6"
+psycopg2-binary = "2.9.9"
 django-structlog = "5.3.0"
 pillow = "10.0.0"
 drf-standardized-errors = {extras = ["openapi"], version = "0.12.5"}
