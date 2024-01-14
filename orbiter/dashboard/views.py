@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView
 
 from .forms import EmailForm
 from .models import Company, Location, Job
-from .lib.execute_crawling import execute_crawling_function
+from .utils.execute_crawling import execute_crawling_function
 
 
 def send_email(request):
