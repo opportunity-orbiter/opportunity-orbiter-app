@@ -1,27 +1,21 @@
 <!-- templates/dashboard.html -->
-
 {% extends '_base.html' %}
 <!-- Extend from a base template if you have one -->
-
 {% block content %}
-<h1>Willkommen auf dem Dashboard</h1>
-<p>Das ist der Einstieg in die Auswertung der Unternehmen.</p>
-<ul>
-    {% for company in companies %}
-    <li>
-        <h2>{{ company.name }}</h2>
-        <p>{{ company.id }}</p>
-
-        <!-- Füge hier weitere Unternehmensdetails ein wie eine URL ein -->
-        <h2>
-            <a href="{% url 'dashboard:company-detail' company.id %}"
-                >{{ company.name }}</a
-            >
-        </h2>
-    </li>
-    {% empty %}
-    <li>Keine Unternehmen gefunden.</li>
-    {% endfor %}
-</ul>
-
+    <h1 class="text-3xl font-bold underline">Willkommen auf dem Dashboard</h1>
+    <p>Das ist der Einstieg in die Auswertung der Unternehmen.</p>
+    <ul>
+        {% for company in companies %}
+            <li>
+                <h2>{{ company.name }}</h2>
+                <p>{{ company.id }}</p>
+                <!-- Füge hier weitere Unternehmensdetails ein wie eine URL ein -->
+                <h2>
+                    <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
+                </h2>
+            </li>
+        {% empty %}
+            <li>Keine Unternehmen gefunden.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

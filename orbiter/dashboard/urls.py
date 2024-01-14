@@ -14,4 +14,5 @@ urlpatterns = [
     path("companies/", CompanyListView.as_view(), name="company-list"),
     # company detail view
     path("companies/<int:pk>/", CompanyDetailView.as_view(), name="company-detail"),
+    # TODO implement the views for the other models
 ]

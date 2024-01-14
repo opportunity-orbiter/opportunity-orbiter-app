@@ -81,3 +81,6 @@ class JobDetailView(DetailView):
     context_object_name = "job"
     ordering = ["-name"]
     paginate_by = 10
+
+
+# TODO Delete und edit views
