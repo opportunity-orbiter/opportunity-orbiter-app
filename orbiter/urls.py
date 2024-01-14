@@ -31,7 +31,7 @@ urlpatterns = [
     # dashboard
     path("dashboard/", include("orbiter.dashboard.urls"), name="dashboard"),
     # crawler
-    path("crawler/", views.index, name="index"),
+    path("crawler/", include("orbiter.dashboard.urls"), name="crawler"),
     # path("crawler/", include("orbiter.crawler.urls"), name="crawler"),
     path("laboratory/", include("orbiter.laboratory.urls"), name="laboratory"),
     # Add more paths to include other apps
