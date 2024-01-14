@@ -18,8 +18,9 @@ urlpatterns = [
     # view for all companies
     path("send-email/", send_email, name="send_email"),
     path("companies/", CompanyListView.as_view(), name="company-list"),
-    # company detail view
+    # company detail view @Alex so werden die einzelnen Unternehmen PK/ID aufgerufen
     path("companies/<int:pk>/", CompanyDetailView.as_view(), name="company-detail"),
-    # TODO implement the views for the other models
+    # Das ist der Auslöser für das Crawling
     path("run-crawling/", execute_crawl_view, name="run-crawling"),
+    # TODO implement the views for the other models @Alex
 ]
