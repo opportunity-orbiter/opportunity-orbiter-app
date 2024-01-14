@@ -29,6 +29,9 @@ django-huey-monitor = "^0.7.1"
 playwright = "^1.40.0"
 whitenoise = "^6.6.0"
 djlint = "^1.34.1"
+beautifulsoup4 = "^4.12.2"
+langchain-openai = "^0.0.2.post1"
+langchain = "^0.1.0"
 
 [tool.poetry.group.dev.dependencies]
 django-browser-reload = "1.11.0"

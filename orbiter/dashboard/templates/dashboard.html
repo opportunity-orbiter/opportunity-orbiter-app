@@ -18,4 +18,9 @@
             <li>Keine Unternehmen gefunden.</li>
         {% endfor %}
     </ul>
+    <p>Test</p>
+    <form action="{% url 'dashboard:run-crawling' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Run Crawl</button>
+    </form>
 {% endblock %}

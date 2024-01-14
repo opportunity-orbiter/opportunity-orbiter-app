@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -6,6 +7,7 @@ from django.views.generic.edit import CreateView
 
 from .forms import EmailForm
 from .models import Company, Location, Job
+from .lib.execute_crawling import execute_crawling_function
 
 
 def send_email(request):
@@ -81,6 +83,11 @@ class JobDetailView(DetailView):
     context_object_name = "job"
     ordering = ["-name"]
     paginate_by = 10
+
+
+def execute_crawl_view(request):
+    execute_crawling_function()
+    return HttpResponse("Crawling script executed.")
 
 
 # TODO Delete und edit views
