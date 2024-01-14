@@ -29,7 +29,7 @@ urlpatterns = [
     # laboratory
     path("laboratory/", views.index, name="index"),
     # dashboard
-    path("dashboard/", views.index, name="index"),
+    path("dashboard/", include("orbiter.dashboard.urls")),
     # crawler
     path("crawler/", views.index, name="index"),
     # path("crawler/", include("orbiter.crawler.urls")),

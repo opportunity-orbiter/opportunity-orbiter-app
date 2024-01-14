@@ -1,0 +1,19 @@
+<!-- templates/webpage_list.html -->
+
+{% extends '_base.html' %}
+<!-- Extend from a base template if you have one -->
+
+{% block content %}
+<h1>A List of Webpages blubb duoo</h1>
+<ul>
+    {% for webpage in webpages %}
+    <li>
+        <strong>{{ webpage.title }}</strong>
+        <p>{{ webpage.content|truncatewords:30 }}</p>
+        <p>Last updated: {{ webpage.last_updated|date:"F d, Y" }}</p>
+    </li>
+    {% empty %}
+    <li>No webpages available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
