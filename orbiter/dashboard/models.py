@@ -1,24 +1,7 @@
-import re
 from django.db import models
 from django.core.validators import MinValueValidator
 
 # Create your models here.
-
-
-class Webpage(models.Model):
-    url = models.CharField(max_length=200)
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    date = models.DateTimeField("date published")
-
-    def __str__(self):
-        return self.title
-
-    def summary(self):
-        return self.content[:100]
-
-    def pub_date_pretty(self):
-        return self.date.strftime("%b %e %Y")
 
 
 # a company class to store company information, including name,  description,
@@ -69,7 +52,6 @@ class Location(models.Model):
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
-    active = models.BooleanField()
     # related_name='locations': This is an optional argument that allows you to access the related Location instances from a Company instance more intuitively. For example, if you have a Company instance named company, you can access its locations with company.locations.all()
     company = models.ForeignKey(
         Company,
@@ -84,36 +66,35 @@ class Location(models.Model):
 
 
 class Job(models.Model):
-    job_id = models.CharField(max_length=100, unique=True)
     title = models.CharField(max_length=200)
     job_url = models.URLField()
     category = models.CharField(max_length=100)
+    tasks_and_responsibilities = models.JSONField(blank=True, null=True)
+    short_summary = models.TextField(null=True, blank=True)
+    tech_skill_requirements = models.JSONField(blank=True, null=True)
+    non_tech_skill_requirements = models.JSONField(blank=True, null=True)
 
-    tech_skills = models.JSONField(blank=True, null=True)
-    non_tech_skills = models.JSONField(blank=True, null=True)
-
-    salary_lower_end = models.DecimalField(
+    salary_lower_bound = models.DecimalField(
         max_digits=10, decimal_places=2, validators=[MinValueValidator(0)]
     )
-    salary_upper_end = models.DecimalField(
+    salary_upper_bound = models.DecimalField(
         max_digits=10, decimal_places=2, validators=[MinValueValidator(0)]
     )
 
     vacant_since = models.DateField()
-    start_date = models.DateField()
+    start_date = models.DateField(blank=True, null=True)
     offline_since = models.DateField(blank=True, null=True)
 
     benefits = models.JSONField(blank=True, null=True)
 
-    experience_in_years_lower_end = models.PositiveIntegerField()
-    experience_in_years_upper_end = models.PositiveIntegerField()
+    minimal_experience_in_years = models.PositiveIntegerField()
+    maximal_experience_in_years = models.PositiveIntegerField()
 
     leadership_role = models.BooleanField(default=False)
     team_size = models.PositiveIntegerField()
 
     full_text = models.TextField()
-    employment_type = models.CharField(max_length=100)
-
+    type_of_contract = models.CharField(max_length=100)
     company = models.ForeignKey(
         "Company", on_delete=models.CASCADE, related_name="jobs"
     )
