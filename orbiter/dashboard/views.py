@@ -27,6 +27,14 @@ def send_email(request):
     return render(request, "email_form.html", {"form": form})
 
 
+class DashboardView(ListView):
+    model = Company
+    template_name = "dashboard.html"
+    context_object_name = "companies"
+    ordering = ["-name"]
+    paginate_by = 10
+
+
 class CompanyListView(ListView):
     model = Company
     template_name = "company_list.html"

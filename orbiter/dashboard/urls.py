@@ -8,6 +8,7 @@ app_name = "dashboard"
 urlpatterns = [
     # send_email
     # standard views for index
+    path("", CompanyListView.as_view(), name="dashboard"),
     # view for all companies
     path("send-email/", send_email, name="send_email"),
     path("companies/", CompanyListView.as_view(), name="company-list"),
