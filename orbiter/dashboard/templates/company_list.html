@@ -1,0 +1,26 @@
+<!-- templates/company_list.html -->
+
+{% extends '_base.html' %}
+<!-- Extend from a base template if you have one -->
+
+{% block content %}
+<h1>Unternehmensliste</h1>
+<ul>
+    {% for company in companies %}
+    <li>
+        <h2>{{ company.name }}</h2>
+        <p>{{ company.id }}</p>
+
+        <!-- Füge hier weitere Unternehmensdetails ein wie eine URL ein -->
+        <h2>
+            <a href="{% url 'dashboard : companydetail' company.id %}"
+                >{{ company.name }}</a
+            >
+        </h2>
+    </li>
+    {% empty %}
+    <li>Keine Unternehmen gefunden.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

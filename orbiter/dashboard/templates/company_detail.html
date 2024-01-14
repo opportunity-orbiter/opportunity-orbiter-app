@@ -1,0 +1,13 @@
+<!-- templates/company_detail.html -->
+
+{% extends '_base.html' %}
+<!-- Extend from a base template if you have one -->
+
+{% block content %}
+<!-- This is where you put your content -->
+<h2>{{ company.name }}</h2>
+<p>{{ company.description }}</p>
+<p>{{ company.address }}</p>
+<p>{{ company.city }}</p>
+
+{% endblock %}

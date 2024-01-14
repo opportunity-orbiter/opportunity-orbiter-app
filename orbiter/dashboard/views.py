@@ -31,23 +31,7 @@ class CompanyListView(ListView):
     model = Company
     template_name = "company_list.html"
     context_object_name = "companies"
-    ordering = ["-date"]
-    paginate_by = 10
-
-
-class CompanyCreateView(CreateView):
-    model = Company
-    template_name = "company_create.html"
-    context_object_name = "company"
-    ordering = ["-date"]
-    paginate_by = 10
-
-
-class LocationListView(ListView):
-    model = Location
-    template_name = "location_list.html"
-    context_object_name = "locations"
-    ordering = ["-date"]
+    ordering = ["-name"]
     paginate_by = 10
 
 
@@ -55,7 +39,23 @@ class CompanyDetailView(DetailView):
     model = Company
     template_name = "company_detail.html"
     context_object_name = "company"
-    ordering = ["-date"]
+    ordering = ["-name"]
+    paginate_by = 10
+
+
+class CompanyCreateView(CreateView):
+    model = Company
+    template_name = "company_create.html"
+    context_object_name = "company"
+    ordering = ["-name"]
+    paginate_by = 10
+
+
+class LocationListView(ListView):
+    model = Location
+    template_name = "location_list.html"
+    context_object_name = "locations"
+    ordering = ["-name"]
     paginate_by = 10
 
 
@@ -63,7 +63,7 @@ class JobListView(ListView):
     model = Job
     template_name = "job_list.html"
     context_object_name = "jobs"
-    ordering = ["-date"]
+    ordering = ["-name"]
     paginate_by = 10
 
 
@@ -71,5 +71,5 @@ class JobDetailView(DetailView):
     model = Job
     template_name = "job_detail.html"
     context_object_name = "job"
-    ordering = ["-date"]
+    ordering = ["-name"]
     paginate_by = 10
