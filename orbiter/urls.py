@@ -7,6 +7,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 
 from .core import api, views
 
+
 urlpatterns = [
     # admin
     path("dj-admin/", admin.site.urls),
@@ -26,13 +27,14 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("terms/", views.terms, name="terms"),
     path("feedback/", views.feedback, name="feedback"),
-    # laboratory
-    path("laboratory/", views.index, name="index"),
     # dashboard
-    path("dashboard/", include("orbiter.dashboard.urls"), name="dashboard"),
+    path(
+        "dashboard/",
+        include("orbiter.dashboard.urls", namespace="dashboard"),
+    ),
     # crawler
-    path("crawler/", include("orbiter.dashboard.urls"), name="crawler"),
-    # path("crawler/", include("orbiter.crawler.urls"), name="crawler"),
+    path("crawler/", include("orbiter.crawler.urls", namespace="crawler")),
+    # laboratory
     path("laboratory/", include("orbiter.laboratory.urls"), name="laboratory"),
     # Add more paths to include other apps
 ]
