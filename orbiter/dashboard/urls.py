@@ -38,7 +38,7 @@ urlpatterns = [
     path("locations/new", LocationCreateView.as_view(), name="location-create"),
     path("locations/", LocationListView.as_view(), name="location-list"),
     path("locations/<int:pk>/", LocationDetailView.as_view(), name="location-detail"),
-    path("lovation/<int:pk>/edit", LocationEditView.as_view(), name="location-edit"),
+    path("location/<int:pk>/edit", LocationEditView.as_view(), name="location-edit"),
 
     # Das ist der Auslöser für das Crawling
     path("run-crawling/", execute_crawl_view, name="run-crawling"),
