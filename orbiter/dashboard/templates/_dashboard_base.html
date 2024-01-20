@@ -1,0 +1,192 @@
+<!-- templates/dashboard.html -->
+{% extends "_base.html" %}
+<!-- Extend from a base template if you have one -->
+{% block content %}
+    <div class ="drawer min-h-screen bg-base-200 lg:drawer-open">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <main class="drawer-content">
+            {% block content_dashboard %}
+            {% endblock content_dashboard %}
+        </main>
+        <aside class="drawer-side z-10">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            <!-- sidebar menu -->
+            <nav class="flex min-h-screen w-72 flex-col gap-2 overflow-y-auto bg-base-100 px-6 py-10">
+                <div class="mx-4 flex items-center gap-2 font-black">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="32"
+                         height="32"
+                         viewBox="0 0 32 32">
+                        <defs>
+                        <style>
+      .cls-1 {
+        fill: none;
+      }
+                        </style>
+                        </defs>
+                        <path d="M22.9141,16.5l2.7929-2.793a.9994.9994,0,0,0,0-1.414L23.4141,10,25.5,7.9141,28.5859,11,30,9.5859,22.4141,2,21,3.4141,24.0859,6.5,22,8.5859,19.707,6.293a.9994.9994,0,0,0-1.414,0L15.5,9.0859,8.707,2.293a.9994.9994,0,0,0-1.414,0l-5,5a.9994.9994,0,0,0,0,1.414L9.0859,15.5,6.293,18.293a.9994.9994,0,0,0,0,1.414L8.5859,22,6.5,24.0859,3.4141,21,2,22.4141,9.5859,30,11,28.5859,7.9141,25.5,10,23.4141l2.293,2.2929a.9995.9995,0,0,0,1.414,0L16.5,22.9141l6.793,6.7929a.9995.9995,0,0,0,1.414,0l5-5a.9994.9994,0,0,0,0-1.414ZM4.4141,8,8,4.4141,10.0859,6.5,6.5,10.0859Zm3.5,3.5L11.5,7.9141,14.0859,10.5,10.5,14.0859ZM13,23.5859,8.4141,19,19,8.4141,23.5859,13ZM17.9141,21.5,21.5,17.9141,24.0859,20.5,20.5,24.0859ZM24,27.5859,21.9141,25.5,25.5,21.9141,27.5859,24Z" transform="translate(0 0)" />
+                        <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32" />
+                    </svg>
+                    {{ PROJECT_NAME }}
+                </div>
+                <ul class="menu">
+                    <li>
+                        <a class="active">
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/home.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/user.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Users
+                        </a>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>
+                                <svg data-src="https://unpkg.com/heroicons/20/solid/squares-2x2.svg"
+                                     class="h-5 w-5">
+                                </svg>
+                                Products
+                            </summary>
+                            <ul>
+                                <li>
+                                    <a>All Products</a>
+                                </li>
+                                <li>
+                                    <a>Add New</a>
+                                </li>
+                                <li>
+                                    <a>Categories</a>
+                                </li>
+                                <li>
+                                    <a>Tags</a>
+                                </li>
+                                <li>
+                                    <a>Reports</a>
+                                </li>
+                                <li>
+                                    <a>Archive</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>
+                                <svg data-src="https://unpkg.com/heroicons/20/solid/credit-card.svg"
+                                     class="h-5 w-5">
+                                </svg>
+                                Transactions
+                            </summary>
+                            <ul>
+                                <li>
+                                    <a>All Transactions</a>
+                                </li>
+                                <li>
+                                    <a>Failed Transactions</a>
+                                </li>
+                                <li>
+                                    <a>Successful Transactions</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <a>
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/chart-pie.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Stats
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/document-text.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Logs
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/inbox.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Messages
+                            <span class="badge badge-info badge-sm">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>
+                                <svg data-src="https://unpkg.com/heroicons/20/solid/adjustments-vertical.svg"
+                                     class="h-5 w-5">
+                                </svg>
+                                Settings
+                            </summary>
+                            <ul>
+                                <li>
+                                    <a>General</a>
+                                </li>
+                                <li>
+                                    <a>Themes</a>
+                                </li>
+                                <li>
+                                    <a>Routes</a>
+                                </li>
+                                <li>
+                                    <a>Comments</a>
+                                </li>
+                                <li>
+                                    <a>Media</a>
+                                </li>
+                                <li>
+                                    <a>Roles</a>
+                                </li>
+                                <li>
+                                    <a>Merchants</a>
+                                </li>
+                                <li>
+                                    <a>Tools</a>
+                                    <ul>
+                                        <li>
+                                            <a>Files</a>
+                                        </li>
+                                        <li>
+                                            <a>Scripts</a>
+                                        </li>
+                                        <li>
+                                            <a>Suggestions</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a>Databases</a>
+                                </li>
+                                <li>
+                                    <a>Gateways</a>
+                                </li>
+                                <li>
+                                    <a>Plugins</a>
+                                </li>
+                                <li>
+                                    <a>API</a>
+                                </li>
+                                <li>
+                                    <a>Support</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /sidebar menu -->
+        </aside>
+    </div>
+{% endblock content %}
