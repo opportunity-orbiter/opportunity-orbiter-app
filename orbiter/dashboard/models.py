@@ -17,8 +17,8 @@ class Company(models.Model):
     website_url = models.URLField(max_length=200)
     # business_fields as an array of strings
     business_fields = models.JSONField(null=True, blank=True)
-    employee_count = models.PositiveBigIntegerField()
-    employee_reviews_rating = models.FloatField()
+    employee_count = models.PositiveBigIntegerField(null=True, blank=True)
+    employee_reviews_rating = models.FloatField(null=True, blank=True)
     job_portal_url = models.URLField(max_length=200)
 
     competitor = models.ForeignKey(
@@ -29,7 +29,7 @@ class Company(models.Model):
         blank=True,
         related_name="competitors",
     )
-    last_crawled_at = models.DateTimeField(auto_now=True)
+    #last_crawled_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -119,3 +119,4 @@ class Job(models.Model):
 
     class Meta:
         ordering = ["-vacant_since"]  # Order by recent vacancies
+

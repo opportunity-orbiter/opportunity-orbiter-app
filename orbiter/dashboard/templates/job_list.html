@@ -1,0 +1,17 @@
+<!-- templates/job_list.html -->
+
+{% extends '_base.html' %}
+
+{% block content %}
+  <h1>Job List</h1>
+  <ul>
+    {% for job in jobs %}
+      <li>
+        <h2><a href="{% url 'dashboard:job-detail' pk=job.pk %}">{{ job.title }}</a></h2>
+        <!-- Add more job details as needed -->
+      </li>
+    {% empty %}
+      <li>No jobs found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

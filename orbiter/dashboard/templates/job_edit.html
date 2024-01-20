@@ -1,0 +1,15 @@
+<!-- templates/job_edit.html -->
+
+{% extends '_base.html' %}
+
+{% block content %}
+  <h1>Edit Job</h1>
+  <form method="post" action="{% url 'dashboard:job-edit' job.id %}">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button type="submit">Save Changes</button>
+    <a href="{% url 'dashboard:job-detail' job.id %}"><button type="button">Cancel</button></a>
+  </form>
+{% endblock %}

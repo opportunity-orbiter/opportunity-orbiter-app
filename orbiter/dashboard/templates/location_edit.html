@@ -1,0 +1,15 @@
+<!-- templates/location_edit.html -->
+
+{% extends '_base.html' %}
+
+{% block content %}
+  <h1>Edit location</h1>
+  <form method="post" action="{% url 'dashboard:location-edit' location.id %}">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button type="submit">Save Changes</button>
+    <a href="{% url 'dashboard:location-detail' location.id %}"><button type="button">Cancel</button></a>
+  </form>
+{% endblock %}

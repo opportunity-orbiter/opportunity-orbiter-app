@@ -1,0 +1,13 @@
+<!-- templates/location_detail.html -->
+
+{% extends '_base.html' %}
+<!-- Extend from a base template if you have one -->
+
+{% block content %}
+<!-- This is where you put your content -->
+<h2>{{ location.name }}</h2>
+<p>{{ location.description }}</p>
+<p>{{ location.address }}</p>
+<p>{{ location.city }}</p>
+
+{% endblock %}

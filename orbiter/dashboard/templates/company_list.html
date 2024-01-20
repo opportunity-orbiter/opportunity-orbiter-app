@@ -5,6 +5,8 @@
 
 {% block content %}
 <h1>Unternehmensliste</h1>
+<br>
+<br>
 <ul>
     {% for company in companies %}
     <li>
@@ -22,5 +24,12 @@
     <li>Keine Unternehmen gefunden.</li>
     {% endfor %}
 </ul>
+
+<br>
+<br>
+<form action="{% url 'dashboard:company-create' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">New Entry</button>
+</form>
 
 {% endblock %}

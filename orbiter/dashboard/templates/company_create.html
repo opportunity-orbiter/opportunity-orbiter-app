@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block content %}
+  <h2>Create Company</h2>
+  <form method="post" action="{% url 'dashboard:company-create' %}">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button type="submit">Save Company</button>
+    <button type="reset">Reset</button>
+    <a href="{% url 'dashboard:company-list' %}"><button type="button">Back</button></a>
+  </form>
+{% endblock %}
