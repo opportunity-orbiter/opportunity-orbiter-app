@@ -29,7 +29,7 @@ class Company(models.Model):
         blank=True,
         related_name="competitors",
     )
-    #last_crawled_at = models.DateTimeField(auto_now=True)
+    last_crawled_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name

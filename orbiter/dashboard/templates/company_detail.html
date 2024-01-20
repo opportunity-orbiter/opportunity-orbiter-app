@@ -7,4 +7,8 @@
     <p>{{ company.description }}</p>
     <p>{{ company.address }}</p>
     <p>{{ company.city }}</p>
+
+    <a href="{% url 'dashboard:company-edit' company.id %}">
+        <button>Edit</button>
+      </a>
 {% endblock %}

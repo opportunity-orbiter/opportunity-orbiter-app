@@ -63,15 +63,12 @@ class CompanyDetailView(DetailView):
     ordering = ["-name"]
     paginate_by = 10
 
-class CompanyEditView(DetailView):
+class CompanyEditView(UpdateView):
     model = Company
-    template_name = "company_list.html"
-    context_object_name = "company"
+    template_name = "company_edit.html"
+    form_class = CompanyForm
+    success_url = reverse_lazy('dashboard:company-list')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = CompanyForm(instance=self.object)
-        return context
 
 # ----------Views Location ------------  
 
@@ -99,15 +96,12 @@ class LocationDetailView(DetailView):
     ordering = ["-name"]
     paginate_by = 10
 
-class LocationEditView(DetailView):
+class LocationEditView(UpdateView):
     model = Location
-    template_name = "location_list.html"
-    context_object_name = "location"
+    template_name = "location_edit.html"
+    form_class = LocationForm
+    success_url = reverse_lazy('dashboard:location-list')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = LocationForm(instance=self.object)
-        return context
 
 # ----------Views JOBS ------------   
 
