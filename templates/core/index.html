@@ -54,47 +54,48 @@
                             <path d="M22.9141,16.5l2.7929-2.793a.9994.9994,0,0,0,0-1.414L23.4141,10,25.5,7.9141,28.5859,11,30,9.5859,22.4141,2,21,3.4141,24.0859,6.5,22,8.5859,19.707,6.293a.9994.9994,0,0,0-1.414,0L15.5,9.0859,8.707,2.293a.9994.9994,0,0,0-1.414,0l-5,5a.9994.9994,0,0,0,0,1.414L9.0859,15.5,6.293,18.293a.9994.9994,0,0,0,0,1.414L8.5859,22,6.5,24.0859,3.4141,21,2,22.4141,9.5859,30,11,28.5859,7.9141,25.5,10,23.4141l2.293,2.2929a.9995.9995,0,0,0,1.414,0L16.5,22.9141l6.793,6.7929a.9995.9995,0,0,0,1.414,0l5-5a.9994.9994,0,0,0,0-1.414ZM4.4141,8,8,4.4141,10.0859,6.5,6.5,10.0859Zm3.5,3.5L11.5,7.9141,14.0859,10.5,10.5,14.0859ZM13,23.5859,8.4141,19,19,8.4141,23.5859,13ZM17.9141,21.5,21.5,17.9141,24.0859,20.5,20.5,24.0859ZM24,27.5859,21.9141,25.5,25.5,21.9141,27.5859,24Z" transform="translate(0 0)" />
                             <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32" />
                         </svg>
-                    daisyUI</a>
+                    {{ PROJECT_NAME }}</a>
                 </div>
                 <div class="navbar-center hidden lg:flex">
                     <ul class="menu menu-horizontal px-1">
                         <li>
-                            <a>Item 1</a>
-                        </li>
-                        <li>
                             <details>
-                                <summary>Parent</summary>
+                                <summary>Funktionen</summary>
                                 <ul class="p-2">
                                     <li>
-                                        <a>Submenu 1</a>
+                                        <a>Daten</a>
                                     </li>
                                     <li>
-                                        <a>Submenu 2</a>
+                                        <a>Analyse</a>
+                                    </li>
+                                    <li>
+                                        <a>Empfehlungen</a>
                                     </li>
                                 </ul>
                             </details>
                         </li>
                         <li>
-                            <a>Item 3</a>
+                            <a>Häufige Fragen</a>
+                        </li>
+                        <li>
+                            <a>Über uns</a>
                         </li>
                     </ul>
                 </div>
                 <div class="navbar-end">
-                    <a class="btn">Button</a>
+                    <a class="btn">Anmelden</a>
                 </div>
             </div>
         </header>
         <!-- Hero section -->
-        <div class="hero bg-base-200 mt-8">
+        <div class="hero bg-base-100 mt-8">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_4.png' %}"
                      class="max-w-sm rounded-lg shadow-2xl" />
                 <div>
-                    <h1 class="text-5xl font-bold">Box Office News!</h1>
-                    <p class="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
-                    <button class="btn btn-primary">Get Started</button>
+                    <h1 class="text-5xl font-bold">{{ PROJECT_NAME }}: Erkunde den Fachkräftebedarf</h1>
+                    <p class="py-6">Mit wenigen Klicks kannst du den Fachkräftebedarf in deiner Region erkunden.</p>
+                    <button class="btn btn-secondary">Jetzt anmelden</button>
                 </div>
             </div>
         </div>
@@ -266,37 +267,59 @@
         <div class="prose lg:prose-xl mt-24">
             <h2>Häufige Fragen</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
-            <div class="">
-                <figure>
-                    <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_4.png' %}"
-                         alt="My image" />
+        <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
+                <div class="">
+                    <figure>
+                        <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_4.png' %}"
+                             alt="My image" />
+                    </img>
                 </figure>
-            </img>
+            </div>
+            <div>
+                <div class="join join-vertical w-full">
+                    <div class="collapse collapse-arrow join-item border border-base-300">
+                        <input type="radio" name="my-accordion-4" checked="checked" />
+                        <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
+                        <div class="collapse-content">
+                            <p>hello</p>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-arrow join-item border border-base-300">
+                        <input type="radio" name="my-accordion-4" />
+                        <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
+                        <div class="collapse-content">
+                            <p>hello</p>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-arrow join-item border border-base-300">
+                        <input type="radio" name="my-accordion-4" />
+                        <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
+                        <div class="collapse-content">
+                            <p>hello</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prose lg:prose-xl mt-24">
+            <h2>Über uns</h2>
         </div>
         <div>
-            <div class="join join-vertical w-full">
-                <div class="collapse collapse-arrow join-item border border-base-300">
-                    <input type="radio" name="my-accordion-4" checked="checked" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content">
-                        <p>hello</p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
+                <div class="prose lg:prose-xl">
+                    <p>Der Opportunity Orbiter ist ein Projekt von</p>
+                    <ul>
+                        <li>Alexander Werner Krüger</li>
+                        <li>Quirin Johannes Koch</li>
+                    </ul>
                 </div>
-                <div class="collapse collapse-arrow join-item border border-base-300">
-                    <input type="radio" name="my-accordion-4" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content">
-                        <p>hello</p>
-                    </div>
-                </div>
-                <div class="collapse collapse-arrow join-item border border-base-300">
-                    <input type="radio" name="my-accordion-4" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content">
-                        <p>hello</p>
-                    </div>
-                </div>
+                <div>
+                    <figure>
+                        <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
+                             alt="My image" />
+                    </img>
+                </figure>
             </div>
         </div>
     </div>

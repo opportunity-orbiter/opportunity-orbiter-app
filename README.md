@@ -1,40 +1,40 @@
-# Sidewinder
+# Opportunity Orbiter
 
-<br><br>
+## Beschreibung
 
-<p align="center"><img width="200" src='docs/sidewinder.png'/></p>
+Unser Projekt umfasst die Entwicklung einer Django-App mit einem integrierten Webcrawler, der speziell auf die Bewertung von Jobanzeigen aus dem IT-Sektor im Berliner Raum abzielt, darunter Start-ups, Unternehmen und Beratungen. Wir möchten die Themen Web Crawling, Datenhaltung, Analytics und Webinterface bearbeiten. Eine besondere Herausforderung wird es sein, Unternehmensseiten zu crawlen. Zusätzlich planen wir, ein Large Language Model (LLM) einzubeziehen, speziell ein frei verfügbares Modell wie LeoLM/leo-hessianai-13b-chat · Hugging Face, um die erhobenen Daten zu analysieren.
+In unserem Projekt konzentrieren wir uns darauf, makroökonomische Trends und Entwicklungen in der IT-Branche, wie im Bereich Data Engineering, anhand der analysierten Jobanzeigen zu erfassen und zu verstehen. Wir gehen davon aus, dass wir möglicherweise schnelle Veränderungen in den Jobanzeigen feststellen können, die auf wirtschaftliche Schwankungen oder politische Entscheidungen, wie Investitionen der Bundesregierung in die Infrastruktur, zurückzuführen sind.
 
-<br><br>
+## Perspektive
 
-> Configured Django on your own server in 10 minutes.
+Ferner überlegen wir, ob unser Projekt nicht nur zur Analyse genutzt werden könnte, sondern auch als Grundlage für die Bereitstellung von Open Data, womit wir die gesammelten Daten der Öffentlichkeit zugänglich machen würden.
 
-<br>
+## Teammitglieder
 
-**Sidewinder** is an open-source [Django](https://www.djangoproject.com/) starter kit that focuses on good defaults, developer experience, and deployment. Also, [a snake](https://en.wikipedia.org/wiki/Crotalus_cerastes).
+Alexander (Werner) Krüger
+Quirin Johannes Koch
 
-Sidewinder is opinionated to provide smooth experience from starting a new project to deploying it on a single Virtual Private Server (VPS). It is ideal for indie hackers, educators, students and the like.
+## Technologien
 
-With Sidewinder you will:
+Folgende Technologien werden in unserem Projekt primär eingesetzt:
 
-* Use a modern Python dependency manager Poetry to manage your application's virtual environment
-* Use environment variables instead of juggling multiple configuration files
-* Use HTMX for modern frontends
-* Use django-allauth to provide email-based and 3rd party authentication.
-* Have a custom User model for ultimate flexibility
-* Have Django REST Framework at your disposal right from the start, including modern API docs, standardized error responses, and CORS configuration
-* Have a Huey task queue for background and periodic tasks
-* Have state-of-the-art development tools including auto reloading, debugging and profiling tools, linters and formatters
-* Log anything you want with structured logging
-* Execute automated tests using the best testing library pytest
-* Write test fixtures efficiently using factoryboy and Faker
-* End-to-end test your frontend using Playwright
-* Deploy to your own VPS in the "It just works" style using Ansible
-* Not be limited in customization as all important files are exposed and ready to be changed
+### Backend
 
-### Documentation
+- Python 3.12
+- Django 5.0
+- Django REST Framework 3.14.0 (noch nicht implementiert)
+- huey 2.4.5 (noch nicht implementiert)
 
-[Documentation](https://stribny.github.io/sidewinder/)
+### Crawling
 
-### Development
+- playwright 1.40.0
+- beautifulsoup4 4.12.2
+- langchain 0.1.0 
+- langchain-openai 0.0.2.post1
 
-Follow the development at [@stribny](https://twitter.com/stribny)
+### Frontend
+
+- DaisyUI 2.6.0
+- TailwindCSS 3.0.23
+- HTMX 1.6.1
+  
