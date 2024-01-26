@@ -62,27 +62,27 @@
                                 <summary>Funktionen</summary>
                                 <ul class="p-2">
                                     <li>
-                                        <a>Daten</a>
+                                        <a href="#daten">Daten</a>
                                     </li>
                                     <li>
-                                        <a>Analyse</a>
+                                        <a href="#analyse">Analyse</a>
                                     </li>
                                     <li>
-                                        <a>Empfehlungen</a>
+                                        <a href="#empfehlungen">Empfehlungen</a>
                                     </li>
                                 </ul>
                             </details>
                         </li>
                         <li>
-                            <a>Häufige Fragen</a>
+                            <a href="#fragen">Häufige Fragen</a>
                         </li>
                         <li>
-                            <a>Über uns</a>
+                            <a href="#ueber-uns">Über uns</a>
                         </li>
                     </ul>
                 </div>
                 <div class="navbar-end">
-                    <a class="btn">Anmelden</a>
+                    <a class="btn" href="{% url 'dashboard:dashboard' %}">Orbiter starten</a>
                 </div>
             </div>
         </header>
@@ -94,135 +94,137 @@
                 <div>
                     <h1 class="text-5xl font-bold">{{ PROJECT_NAME }}: Erkunde den Fachkräftebedarf</h1>
                     <p class="py-6">Mit wenigen Klicks kannst du den Fachkräftebedarf in deiner Region erkunden.</p>
-                    <button class="btn btn-secondary">Jetzt anmelden</button>
+                    <a class="btn btn-neutral" href="{% url 'dashboard:dashboard' %}">Jetzt starten</a>
                 </div>
             </div>
         </div>
         <!-- Main section -->
+        {% comment %} TODO Hide this panel {% endcomment %}
         <div class="prose lg:prose-xl mt-24">
-            <h2>Admin-Panel für einen schnelleren Aufruf der Funktionen</h2>
+            <h2>Admin-Panel zum schnellen Navigieren</h2>
         </div>
-        <section class="page page--wide">
+        <section class="page page--wide flex justify-center mt-16">
             {% include "includes/messages.html" %}
-            <h1>{{ PROJECT_NAME }}</h1>
-            <h3>Pages</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Page</td>
-                        <td>Detail</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="/dashboard/">Opportunity Orbiter Dashboard/</a>
-                        </td>
-                        <td>Dashboard</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/dj-admin/">dj-admin</a>
-                        </td>
-                        <td>Django admin</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/accounts/signup/">accounts/signup</a>
-                        </td>
-                        <td>Sign up page</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/accounts/login/">accounts/login</a>
-                        </td>
-                        <td>Sign in page</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/accounts/password/reset">accounts/password/reset</a>
-                        </td>
-                        <td>Reset password</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/accounts/settings/">settings</a>
-                        </td>
-                        <td>Settings page</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/feedback/">feedback</a>
-                        </td>
-                        <td>Feedback form</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/terms/">terms</a>
-                        </td>
-                        <td>Terms (requires adding a flatpage)</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/silk/">silk</a>
-                        </td>
-                        <td>Silk profiling tool</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/api/redoc/">api/redoc</a>
-                        </td>
-                        <td>API docs</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>API endpoints</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Endpoint</td>
-                        <td>Detail</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="/api/token-auth/">api/token-auth</a>
-                        </td>
-                        <td>Token authentication</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="/api/protected/">api/protected</a>
-                        </td>
-                        <td>Example endpoint that requires token to be accessed</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3>Tools</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Tool</td>
-                        <td>Detail</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="http://localhost:8025">mailhog</a>
-                        </td>
-                        <td>Mailhog (has to be started via Docker Compose)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="lg:prose-xl prose">
+                <h3>Pages</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Page</td>
+                            <td>Detail</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a class="link" href="/dashboard/">Opportunity Orbiter Dashboard/</a>
+                            </td>
+                            <td>Dashboard</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/dj-admin/">dj-admin</a>
+                            </td>
+                            <td>Django admin</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/accounts/signup/">accounts/signup</a>
+                            </td>
+                            <td>Sign up page</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/accounts/login/">accounts/login</a>
+                            </td>
+                            <td>Sign in page</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/accounts/password/reset">accounts/password/reset</a>
+                            </td>
+                            <td>Reset password</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/accounts/settings/">settings</a>
+                            </td>
+                            <td>Settings page</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/feedback/">feedback</a>
+                            </td>
+                            <td>Feedback form</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/terms/">terms</a>
+                            </td>
+                            <td>Terms (requires adding a flatpage)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/silk/">silk</a>
+                            </td>
+                            <td>Silk profiling tool</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/api/redoc/">api/redoc</a>
+                            </td>
+                            <td>API docs</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>API endpoints</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Endpoint</td>
+                            <td>Detail</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="/api/token-auth/">api/token-auth</a>
+                            </td>
+                            <td>Token authentication</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/api/protected/">api/protected</a>
+                            </td>
+                            <td>Example endpoint that requires token to be accessed</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Tools</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Tool</td>
+                            <td>Detail</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="http://localhost:8025">mailhog</a>
+                            </td>
+                            <td>Mailhog (has to be started via Docker Compose)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
         <!--  3 Card section -->
         <div class="prose lg:prose-xl mt-24">
             <h2>Funktionen</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 mt-8">
-            <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="grid gap-12 grid-cols-1 md:grid-cols-3 mt-8 justify-between">
+            <div class="card w-96 bg-base-100 shadow-xl" id="daten">
                 <figure>
                     <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_1.png' %}"
                          alt="Bild eines Satelliten" />
@@ -237,7 +239,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card w-96 bg-base-100 shadow-xl" id="analyse">
                 <figure>
                     <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
                          alt="Bild eines Statelliten" />
@@ -248,11 +250,11 @@
                         Unser System nutzt fortschrittliche LLM-Technologien, um aus den gesammelten Jobdaten tiefgreifende Einsichten in die IT-Branche zu gewinnen. Erkennen Sie mit uns makroökonomische Entwicklungen und Branchentrends, die Ihre Entscheidungen prägen.
                     </p>
                     <div class="card-actions justify-end">
-                        <div class="badge badge-outline">Daten</div>
+                        <div class="badge badge-outline">Analyse</div>
                     </div>
                 </div>
             </div>
-            <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card w-96 bg-base-100 shadow-xl" id="empfehlungen">
                 <figure>
                     <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_3.png' %}"
                          alt="Bild eines Satelliten" />
@@ -263,14 +265,14 @@
                         Basierend auf unseren präzisen Analysen liefern wir Ihnen handfeste Empfehlungen. Nutzen Sie unsere Erkenntnisse, um strategische Entscheidungen zu treffen, die von aktuellen Marktveränderungen und politischen Entwicklungen beeinflusst werden.
                     </p>
                     <div class="card-actions justify-end">
-                        <div class="badge badge-outline">Daten</div>
+                        <div class="badge badge-outline">Empfehlungen</div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Info section -->
         <div class="prose lg:prose-xl mt-24">
-            <h2>Häufige Fragen</h2>
+            <h2 id="fragen">Häufige Fragen</h2>
         </div>
         <div>
             <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
@@ -317,72 +319,68 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="prose lg:prose-xl mt-24">
-        <h2>Über uns</h2>
-    </div>
-    <div>
-        <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
-            <div class="prose lg:prose-xl">
-                <p>Der Opportunity Orbiter ist ein Projekt von</p>
-                <ul>
-                    <li>Alexander Werner Krüger</li>
-                    <li>Quirin Johannes Koch</li>
-                </ul>
-            </div>
-            <div>
-                <figure>
-                    <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
-                         alt="Bild eines Satelliten" />
-                </img>
-            </figure>
+        <div class="prose lg:prose-xl mt-24">
+            <h2 id="ueber-uns">Über uns</h2>
         </div>
-    </div>
-</div>
-<!-- Footer section -->
-<footer class="footer p-10 bg-base-200 text-base-content mt-32">
-    <nav>
-        <header class="footer-title">
-            Services
-        </header>
-        <a class="link link-hover">Branding</a>
-        <a class="link link-hover">Design</a>
-        <a class="link link-hover">Marketing</a>
-        <a class="link link-hover">Advertisement</a>
-    </nav>
-    <nav>
-        <header class="footer-title">
-            Company
-        </header>
-        <a class="link link-hover">About us</a>
-        <a class="link link-hover">Contact</a>
-        <a class="link link-hover">Jobs</a>
-        <a class="link link-hover">Press kit</a>
-    </nav>
-    <nav>
-        <header class="footer-title">
-            Legal
-        </header>
-        <a class="link link-hover">Terms of use</a>
-        <a class="link link-hover">Privacy policy</a>
-        <a class="link link-hover">Cookie policy</a>
-    </nav>
-    <form>
-        <header class="footer-title">
-            Newsletter
-        </header>
-        <fieldset class="form-control w-80">
-            <label class="label">
-                <span class="label-text">Enter your email address</span>
-            </label>
-            <div class="join">
-                <input type="text"
-                       placeholder="username@site.com"
-                       class="input input-bordered join-item" />
-                <button class="btn btn-primary join-item">Subscribe</button>
+        <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
+                <div class="prose lg:prose-xl">
+                    <p>Der Opportunity Orbiter ist ein Projekt von</p>
+                    <ul>
+                        <li>Alexander Werner Krüger</li>
+                        <li>Quirin Johannes Koch</li>
+                    </ul>
+                </div>
+                <div>
+                    <figure>
+                        <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
+                             alt="Bild eines Satelliten" />
+                    </img>
+                </figure>
             </div>
-        </fieldset>
-    </form>
-</footer>
-</div>
+        </div>
+        <!-- Footer section -->
+        <footer class="footer p-10 bg-base-300 text-base-content mt-32">
+            <nav>
+                <header class="footer-title">
+                    Funktionen
+                </header>
+                <a class="link link-hover">Daten</a>
+                <a class="link link-hover">Analyse</a>
+                <a class="link link-hover">Empfehlungen</a>
+            </nav>
+            <nav>
+                <header class="footer-title">
+                    Organisation
+                </header>
+                <a class="link link-hover">Über uns</a>
+                <a class="link link-hover">Kontakt</a>
+                <a class="link link-hover">Pressekit</a>
+            </nav>
+            <nav>
+                <header class="footer-title">
+                    Rechtliches
+                </header>
+                <a class="link link-hover">Impressum</a>
+                <a class="link link-hover">AGB</a>
+                <a class="link link-hover">Datenschutz</a>
+            </nav>
+            <form>
+                <header class="footer-title">
+                    Newsletter
+                </header>
+                <fieldset class="form-control w-80">
+                    <label class="label">
+                        <span class="label-text">E-Mail-Adresse eingeben</span>
+                    </label>
+                    <div class="join">
+                        <input type="text"
+                               placeholder="name@website.com"
+                               class="input input-bordered join-item" />
+                        <button class="btn btn-default join-item">Zum Newsletter anmelden</button>
+                    </div>
+                </fieldset>
+            </form>
+        </footer>
+    </div>
 {% endblock content %}

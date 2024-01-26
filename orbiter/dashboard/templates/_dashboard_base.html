@@ -41,70 +41,35 @@
                         </a>
                     </li>
                     <li>
-                        <a>
-                            <svg data-src="https://unpkg.com/heroicons/20/solid/user.svg"
-                                 class="h-5 w-5">
-                            </svg>
-                            Users
-                        </a>
-                    </li>
-                    <li>
                         <details>
                             <summary>
                                 <svg data-src="https://unpkg.com/heroicons/20/solid/squares-2x2.svg"
                                      class="h-5 w-5">
                                 </svg>
-                                Products
+                                Companies
                             </summary>
                             <ul>
-                                <li>
-                                    <a>All Products</a>
-                                </li>
-                                <li>
-                                    <a>Add New</a>
-                                </li>
-                                <li>
-                                    <a>Categories</a>
-                                </li>
-                                <li>
-                                    <a>Tags</a>
-                                </li>
-                                <li>
-                                    <a>Reports</a>
-                                </li>
-                                <li>
-                                    <a>Archive</a>
-                                </li>
+                                {% for company in companies %}
+                                    <li>
+                                        <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
+                                    </li>
+                                {% empty %}
+                                    <li>Keine Unternehmen gefunden.</li>
+                                {% endfor %}
                             </ul>
                         </details>
                     </li>
                     <li>
-                        <details>
-                            <summary>
-                                <svg data-src="https://unpkg.com/heroicons/20/solid/credit-card.svg"
-                                     class="h-5 w-5">
-                                </svg>
-                                Transactions
-                            </summary>
-                            <ul>
-                                <li>
-                                    <a>All Transactions</a>
-                                </li>
-                                <li>
-                                    <a>Failed Transactions</a>
-                                </li>
-                                <li>
-                                    <a>Successful Transactions</a>
-                                </li>
-                            </ul>
-                        </details>
+                        <div class="flex flex-col w-full border-opacity-50">
+                            <div class="divider divider-neutral">In Arbeit</div>
+                        </div>
                     </li>
                     <li>
                         <a>
                             <svg data-src="https://unpkg.com/heroicons/20/solid/chart-pie.svg"
                                  class="h-5 w-5">
                             </svg>
-                            Stats
+                            Nutzungsstatistiken
                         </a>
                     </li>
                     <li>
@@ -112,7 +77,7 @@
                             <svg data-src="https://unpkg.com/heroicons/20/solid/document-text.svg"
                                  class="h-5 w-5">
                             </svg>
-                            Logs
+                            Crawling-Logs
                         </a>
                     </li>
                     <li>
@@ -130,58 +95,14 @@
                                 <svg data-src="https://unpkg.com/heroicons/20/solid/adjustments-vertical.svg"
                                      class="h-5 w-5">
                                 </svg>
-                                Settings
+                                Einstellungen
                             </summary>
                             <ul>
                                 <li>
-                                    <a>General</a>
+                                    <a>Profil</a>
                                 </li>
                                 <li>
-                                    <a>Themes</a>
-                                </li>
-                                <li>
-                                    <a>Routes</a>
-                                </li>
-                                <li>
-                                    <a>Comments</a>
-                                </li>
-                                <li>
-                                    <a>Media</a>
-                                </li>
-                                <li>
-                                    <a>Roles</a>
-                                </li>
-                                <li>
-                                    <a>Merchants</a>
-                                </li>
-                                <li>
-                                    <a>Tools</a>
-                                    <ul>
-                                        <li>
-                                            <a>Files</a>
-                                        </li>
-                                        <li>
-                                            <a>Scripts</a>
-                                        </li>
-                                        <li>
-                                            <a>Suggestions</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a>Databases</a>
-                                </li>
-                                <li>
-                                    <a>Gateways</a>
-                                </li>
-                                <li>
-                                    <a>Plugins</a>
-                                </li>
-                                <li>
-                                    <a>API</a>
-                                </li>
-                                <li>
-                                    <a>Support</a>
+                                    <a>Abrechnung</a>
                                 </li>
                             </ul>
                         </details>
