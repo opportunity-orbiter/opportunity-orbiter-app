@@ -1,14 +1,14 @@
-{% extends '_base.html' %}
-
-{% block content %}
-  <h2>Create location</h2>
-  <form method="post" action="{% url 'dashboard:location-create' %}">
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <button type="submit">Save location</button>
-    <button type="reset">Reset</button>
-    <a href="{% url 'dashboard:location-list' %}"><button type="button">Back</button></a>
-  </form>
-{% endblock %}
+{% extends "_dashboard_base.html" %}
+<!-- Extend from a base template if you have one -->
+{% block content_dashboard %}
+    <h2>Create location</h2>
+    <form method="post" action="{% url 'dashboard:location-create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save location</button>
+        <button type="reset">Reset</button>
+        <a href="{% url 'dashboard:location-list' %}">
+            <button type="button">Back</button>
+        </a>
+    </form>
+{% endblock content_dashboard %}

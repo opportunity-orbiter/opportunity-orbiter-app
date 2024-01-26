@@ -1,7 +1,7 @@
 <!-- templates/webpage_list.html -->
-{% extends '_base.html' %}
+{% extends "_dashboard_base.html" %}
 <!-- Extend from a base template if you have one -->
-{% block content %}
+{% block content_dashboard %}
     <h1>A List of Webpages blubb duoo</h1>
     <ul>
         {% for webpage in webpages %}
@@ -14,4 +14,4 @@
             <li>No webpages available.</li>
         {% endfor %}
     </ul>
-{% endblock content %}
+{% endblock content_dashboard %}

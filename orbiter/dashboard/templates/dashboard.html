@@ -3,233 +3,231 @@
 <!-- Extend from a base template if you have one -->
 {% block content_dashboard %}
     <!-- content -->
-    <div class="grid grid-cols-12 grid-rows-[min-content] gap-y-12 p-4 lg:gap-x-12 lg:p-10">
-        <!-- header -->
-        <header class="col-span-12 flex items-center gap-2 lg:gap-4">
-            <label for="my-drawer"
-                   class="btn btn-square btn-ghost drawer-button lg:hidden">
-                <svg data-src="https://unpkg.com/heroicons/20/solid/bars-3.svg"
-                     class="h-5 w-5">
-                </svg>
-            </label>
-            <div class="grow">
-                <h1 class="lg:text-2xl lg:font-light">Dashboard</h1>
+    <!-- header -->
+    <header class="col-span-12 flex items-center gap-2 lg:gap-4">
+        <label for="my-drawer"
+               class="btn btn-square btn-ghost drawer-button lg:hidden">
+            <svg data-src="https://unpkg.com/heroicons/20/solid/bars-3.svg"
+                 class="h-5 w-5">
+            </svg>
+        </label>
+        <div class="grow">
+            <h1 class="lg:text-2xl lg:font-light">Dashboard</h1>
+        </div>
+        <div>
+            <input type="text"
+                   placeholder="Search"
+                   class="input input-sm rounded-full max-sm:w-24" />
+        </div>
+        <!-- dropdown -->
+        <div class="dropdown dropdown-end z-10">
+            <div tabindex="0" class="btn btn-circle btn-ghost">
+                <div class="indicator">
+                    <span class="badge indicator-item badge-error badge-xs"></span>
+                    <svg data-src="https://unpkg.com/heroicons/20/solid/bell.svg"
+                         class="h-5 w-5">
+                    </svg>
+                </div>
             </div>
-            <div>
-                <input type="text"
-                       placeholder="Search"
-                       class="input input-sm rounded-full max-sm:w-24" />
+            <ul tabindex="0"
+                class="menu dropdown-content mt-3 w-80 rounded-box bg-base-100 p-2 shadow-2xl">
+                <li>
+                    <a class="gap-4">
+                        <div class="avatar">
+                            <div class="w-8 rounded-full">
+                                <img src="https://picsum.photos/80/80?1" />
+                            </div>
+                        </div>
+                        <span>
+                            <b>New message</b>
+                            <br />
+                            Alice: Hi, did you get my files?
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="gap-4">
+                        <div class="avatar">
+                            <div class="w-8 rounded-full">
+                                <img src="https://picsum.photos/80/80?2" />
+                            </div>
+                        </div>
+                        <span>
+                            <b>Reminder</b>
+                            <br />
+                            Your meeting is at 10am
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="gap-4">
+                        <div class="avatar">
+                            <div class="w-8 rounded-full">
+                                <img src="https://picsum.photos/80/80?3" />
+                            </div>
+                        </div>
+                        <span>
+                            <b>New payment</b>
+                            <br />
+                            Received $2500 from John Doe
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="gap-4">
+                        <div class="avatar">
+                            <div class="w-8 rounded-full">
+                                <img src="https://picsum.photos/80/80?4" />
+                            </div>
+                        </div>
+                        <span>
+                            <b>New payment</b>
+                            <br />
+                            Received $1900 from Alice
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /dropdown -->
+        <!-- dropdown -->
+        <div class="dropdown-end dropdown z-10">
+            <div tabindex="0" class="avatar btn btn-circle btn-ghost">
+                <div class="w-10 rounded-full">
+                    <img src="https://picsum.photos/80/80?5" />
+                </div>
             </div>
-            <!-- dropdown -->
-            <div class="dropdown dropdown-end z-10">
-                <div tabindex="0" class="btn btn-circle btn-ghost">
-                    <div class="indicator">
-                        <span class="badge indicator-item badge-error badge-xs"></span>
-                        <svg data-src="https://unpkg.com/heroicons/20/solid/bell.svg"
-                             class="h-5 w-5">
-                        </svg>
+            <ul tabindex="0"
+                class="menu dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl">
+                <li>
+                    <a>Profile</a>
+                </li>
+                <li>
+                    <a>
+                        Inbox
+                        <span class="badge badge-success">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a>Settings</a>
+                </li>
+                <li>
+                    <a>Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /dropdown -->
+    </header>
+    <!-- header for django data -->
+    <div class="col-span-12 flex items-center gap-2 lg:gap-4">
+        <div class="grow">
+            <form action="{% url 'dashboard:run-crawling' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">Run Crawl</button>
+            </form>
+        </div>
+    </div>
+    <!-- stats -->
+    <section class="stats stats-vertical col-span-12 w-full shadow-sm xl:stats-horizontal">
+        <div class="stat">
+            <div class="stat-title">Total Companies</div>
+            <div class="stat-value">1</div>
+            <div class="stat-desc">21% more than last month</div>
+        </div>
+        <div class="stat">
+            <div class="stat-title">Total Job listings</div>
+            <div class="stat-value">89,400</div>
+            <div class="stat-desc">21% more than last month</div>
+        </div>
+    </section>
+    <!-- /stats -->
+    <!-- card -->
+    <section class="card col-span-12 overflow-hidden bg-base-100 shadow-sm xl:col-span-6">
+        <div class="card-body grow-0">
+            <h2 class="card-title">
+                <a class="link-hover link">Companies</a>
+            </h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="table table-zebra">
+                <tbody>
+                    {% for company in companies %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
+                            </td>
+                            <td>{{ company.employee_count }}</td>
+                            <td>{{ company.last_crawled_at }}</td>
+                            <td>
+                                <svg data-src="https://unpkg.com/heroicons/20/solid/arrow-up-right.svg"
+                                     class="inline-block h-5 w-5 text-success">
+                                </svg>
+                                company.jobs
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <li>Keine Unternehmen gefunden.</li>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <!-- /card -->
+    <!-- card -->
+    <section class="card col-span-12 bg-primary text-primary-content shadow-sm xl:col-span-6">
+        <div class="card-body pb-0">
+            <h2 class="card-title">21,500 USD</h2>
+            <a class="link-hover link text-xs">Revenue report →</a>
+        </div>
+        <tc-column class="h-full w-full p-4 pt-0 [--shape-color:oklch(var(--pc))]" values="[12,10,12,4,13,16,14,10,12,11,17,18,16,17,20,14,15,13,12,14]" min="0" shape-radius="4" shape-gap="4"></tc-column>
+    </section>
+    <!-- /card -->
+    <!-- card -->
+    <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
+        <div class="card-body">
+            <h2 class="card-title">Sources</h2>
+            <div class="flex items-center gap-10">
+                <div class="grow">
+                    <div class="flex items-center gap-2">
+                        <span class="badge badge-xs bg-[#19D6BF]"></span>
+                        Direct
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="badge badge-xs bg-[#A838FF]"></span>
+                        Social
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="badge badge-xs bg-[#3C37FF]"></span>
+                        Search
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="badge badge-xs bg-[#FFBD3C]"></span>
+                        Email
                     </div>
                 </div>
-                <ul tabindex="0"
-                    class="menu dropdown-content mt-3 w-80 rounded-box bg-base-100 p-2 shadow-2xl">
-                    <li>
-                        <a class="gap-4">
-                            <div class="avatar">
-                                <div class="w-8 rounded-full">
-                                    <img src="https://picsum.photos/80/80?1" />
-                                </div>
-                            </div>
-                            <span>
-                                <b>New message</b>
-                                <br />
-                                Alice: Hi, did you get my files?
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="gap-4">
-                            <div class="avatar">
-                                <div class="w-8 rounded-full">
-                                    <img src="https://picsum.photos/80/80?2" />
-                                </div>
-                            </div>
-                            <span>
-                                <b>Reminder</b>
-                                <br />
-                                Your meeting is at 10am
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="gap-4">
-                            <div class="avatar">
-                                <div class="w-8 rounded-full">
-                                    <img src="https://picsum.photos/80/80?3" />
-                                </div>
-                            </div>
-                            <span>
-                                <b>New payment</b>
-                                <br />
-                                Received $2500 from John Doe
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="gap-4">
-                            <div class="avatar">
-                                <div class="w-8 rounded-full">
-                                    <img src="https://picsum.photos/80/80?4" />
-                                </div>
-                            </div>
-                            <span>
-                                <b>New payment</b>
-                                <br />
-                                Received $1900 from Alice
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /dropdown -->
-            <!-- dropdown -->
-            <div class="dropdown-end dropdown z-10">
-                <div tabindex="0" class="avatar btn btn-circle btn-ghost">
-                    <div class="w-10 rounded-full">
-                        <img src="https://picsum.photos/80/80?5" />
-                    </div>
-                </div>
-                <ul tabindex="0"
-                    class="menu dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl">
-                    <li>
-                        <a>Profile</a>
-                    </li>
-                    <li>
-                        <a>
-                            Inbox
-                            <span class="badge badge-success">12</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a>Settings</a>
-                    </li>
-                    <li>
-                        <a>Logout</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /dropdown -->
-        </header>
-        <!-- header for django data -->
-        <div class="col-span-12 flex items-center gap-2 lg:gap-4">
-            <div class="grow">
-                <form action="{% url 'dashboard:run-crawling' %}" method="post">
-                    {% csrf_token %}
-                    <button class="btn btn-primary" type="submit">Run Crawl</button>
-                </form>
+                <tc-pie class="h-32 w-32 shrink-0 [--shape-color-1:#A838FF] [--shape-color-2:#19D6BF] [--shape-color-3:#3C37FF] [--shape-color-4:#FFBD3C]" values="[35,68,22,16]" shape-size="30" shape-gap="6"></tc-pie>
             </div>
         </div>
-        <!-- stats -->
-        <section class="stats stats-vertical col-span-12 w-full shadow-sm xl:stats-horizontal">
-            <div class="stat">
-                <div class="stat-title">Total Companies</div>
-                <div class="stat-value">1</div>
-                <div class="stat-desc">21% more than last month</div>
-            </div>
-            <div class="stat">
-                <div class="stat-title">Total Job listings</div>
-                <div class="stat-value">89,400</div>
-                <div class="stat-desc">21% more than last month</div>
-            </div>
-        </section>
-        <!-- /stats -->
-        <!-- card -->
-        <section class="card col-span-12 overflow-hidden bg-base-100 shadow-sm xl:col-span-6">
-            <div class="card-body grow-0">
-                <h2 class="card-title">
-                    <a class="link-hover link">Companies</a>
-                </h2>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="table table-zebra">
-                    <tbody>
-                        {% for company in companies %}
-                            <tr>
-                                <td>
-                                    <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
-                                </td>
-                                <td>{{ company.employee_count }}</td>
-                                <td>{{ company.last_crawled_at }}</td>
-                                <td>
-                                    <svg data-src="https://unpkg.com/heroicons/20/solid/arrow-up-right.svg"
-                                         class="inline-block h-5 w-5 text-success">
-                                    </svg>
-                                    company.jobs
-                                </td>
-                            </tr>
-                        {% empty %}
-                            <li>Keine Unternehmen gefunden.</li>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        <!-- /card -->
-        <!-- card -->
-        <section class="card col-span-12 bg-primary text-primary-content shadow-sm xl:col-span-6">
-            <div class="card-body pb-0">
-                <h2 class="card-title">21,500 USD</h2>
-                <a class="link-hover link text-xs">Revenue report →</a>
-            </div>
-            <tc-column class="h-full w-full p-4 pt-0 [--shape-color:oklch(var(--pc))]" values="[12,10,12,4,13,16,14,10,12,11,17,18,16,17,20,14,15,13,12,14]" min="0" shape-radius="4" shape-gap="4"></tc-column>
-        </section>
-        <!-- /card -->
-        <!-- card -->
-        <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
-            <div class="card-body">
-                <h2 class="card-title">Sources</h2>
-                <div class="flex items-center gap-10">
-                    <div class="grow">
-                        <div class="flex items-center gap-2">
-                            <span class="badge badge-xs bg-[#19D6BF]"></span>
-                            Direct
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="badge badge-xs bg-[#A838FF]"></span>
-                            Social
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="badge badge-xs bg-[#3C37FF]"></span>
-                            Search
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="badge badge-xs bg-[#FFBD3C]"></span>
-                            Email
-                        </div>
-                    </div>
-                    <tc-pie class="h-32 w-32 shrink-0 [--shape-color-1:#A838FF] [--shape-color-2:#19D6BF] [--shape-color-3:#3C37FF] [--shape-color-4:#FFBD3C]" values="[35,68,22,16]" shape-size="30" shape-gap="6"></tc-pie>
-                </div>
-            </div>
-        </section>
-        <!-- /card -->
-        <!-- card -->
-        <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
-            <div class="card-body pb-0">
-                <h2 class="card-title">19,000</h2>
-                <p>Downloads</p>
-            </div>
-            <tc-line class="h-full w-full rounded-box [--area-opacity:.2] [--shape-color:#19D6BF]" values="[6,5,2,11,13,16,14,14,14,15,18,16,18,15,19,16,20,18,12,14]" min="0"></tc-line>
-        </section>
-        <!-- /card -->
-        <!-- card -->
-        <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
-            <div class="card-body pb-0">
-                <h2 class="card-title">32,800</h2>
-                <p>Unique visitors</p>
-            </div>
-            <tc-line class="h-full w-full rounded-box [--area-opacity:.2] [--shape-color:#A838FF]" values="[12,10,12,4,13,16,14,10,12,11,17,18,16,17,20,14,15,13,12,14]" min="0"></tc-line>
-        </section>
-        <!-- /card -->
-        <!-- card -->
-    </div>
+    </section>
+    <!-- /card -->
+    <!-- card -->
+    <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
+        <div class="card-body pb-0">
+            <h2 class="card-title">19,000</h2>
+            <p>Downloads</p>
+        </div>
+        <tc-line class="h-full w-full rounded-box [--area-opacity:.2] [--shape-color:#19D6BF]" values="[6,5,2,11,13,16,14,14,14,15,18,16,18,15,19,16,20,18,12,14]" min="0"></tc-line>
+    </section>
+    <!-- /card -->
+    <!-- card -->
+    <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
+        <div class="card-body pb-0">
+            <h2 class="card-title">32,800</h2>
+            <p>Unique visitors</p>
+        </div>
+        <tc-line class="h-full w-full rounded-box [--area-opacity:.2] [--shape-color:#A838FF]" values="[12,10,12,4,13,16,14,10,12,11,17,18,16,17,20,14,15,13,12,14]" min="0"></tc-line>
+    </section>
+    <!-- /card -->
+    <!-- card -->
     <!-- /content -->
 {% endblock content_dashboard %}

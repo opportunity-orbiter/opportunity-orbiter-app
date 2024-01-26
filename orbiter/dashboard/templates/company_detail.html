@@ -1,14 +1,13 @@
 <!-- templates/company_detail.html -->
-{% extends '_base.html' %}
+{% extends "_dashboard_base.html" %}
 <!-- Extend from a base template if you have one -->
-{% block content %}
+{% block content_dashboard %}
     <!-- This is where you put your content -->
     <h2>{{ company.name }}</h2>
     <p>{{ company.description }}</p>
     <p>{{ company.address }}</p>
     <p>{{ company.city }}</p>
-
     <a href="{% url 'dashboard:company-edit' company.id %}">
         <button>Edit</button>
-      </a>
-{% endblock %}
+    </a>
+{% endblock content_dashboard %}

@@ -1,13 +1,10 @@
 <!-- templates/location_detail.html -->
-
-{% extends '_base.html' %}
+{% extends "_dashboard_base.html" %}
 <!-- Extend from a base template if you have one -->
-
-{% block content %}
-<!-- This is where you put your content -->
-<h2>{{ location.name }}</h2>
-<p>{{ location.description }}</p>
-<p>{{ location.address }}</p>
-<p>{{ location.city }}</p>
-
-{% endblock %}
+{% block content_dashboard %}
+    <!-- This is where you put your content -->
+    <h2>{{ location.name }}</h2>
+    <p>{{ location.description }}</p>
+    <p>{{ location.address }}</p>
+    <p>{{ location.city }}</p>
+{% endblock content_dashboard %}

@@ -1,4 +1,9 @@
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Send Email</button>
-</form>
+<!-- templates/company_list.html -->
+{% extends "_dashboard_base.html" %}
+<!-- Extend from a base template if you have one -->
+{% block content_dashboard %}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Send Email</button>
+    </form>
+{% endblock content_dashboard %}

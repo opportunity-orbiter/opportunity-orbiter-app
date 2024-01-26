@@ -1,35 +1,28 @@
 <!-- templates/company_list.html -->
-
-{% extends '_base.html' %}
+{% extends "_dashboard_base.html" %}
 <!-- Extend from a base template if you have one -->
-
-{% block content %}
-<h1>Unternehmensliste</h1>
-<br>
-<br>
-<ul>
-    {% for company in companies %}
-    <li>
-        <h2>{{ company.name }}</h2>
-        <p>{{ company.id }}</p>
-
-        <!-- Füge hier weitere Unternehmensdetails ein wie eine URL ein -->
-        <h2>
-            <a href="{% url 'dashboard:company-detail' company.id %}"
-                >{{ company.name }}</a
-            >
-        </h2>
-    </li>
-    {% empty %}
-    <li>Keine Unternehmen gefunden.</li>
-    {% endfor %}
-</ul>
-
-<br>
-<br>
-<form action="{% url 'dashboard:company-create' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">New Entry</button>
-</form>
-
-{% endblock %}
+{% block content_dashboard %}
+    <h1>Unternehmensliste</h1>
+    <br>
+    <br>
+    <ul>
+        {% for company in companies %}
+            <li>
+                <h2>{{ company.name }}</h2>
+                <p>{{ company.id }}</p>
+                <!-- Füge hier weitere Unternehmensdetails ein wie eine URL ein -->
+                <h2>
+                    <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
+                </h2>
+            </li>
+        {% empty %}
+            <li>Keine Unternehmen gefunden.</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <form action="{% url 'dashboard:company-create' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">New Entry</button>
+    </form>
+{% endblock content_dashboard %}

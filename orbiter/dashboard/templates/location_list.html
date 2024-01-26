@@ -1,17 +1,18 @@
 <!-- templates/location_list.html -->
-
-{% extends '_base.html' %}
-
-{% block content %}
-  <h1>location List</h1>
-  <ul>
-    {% for location in locations %}
-      <li>
-        <h2><a href="{% url 'dashboard:location-detail' pk=location.pk %}">{{ location.title }}</a></h2>
-        <!-- Add more location details as needed -->
-      </li>
-    {% empty %}
-      <li>No locations found.</li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+{% extends "_dashboard_base.html" %}
+<!-- Extend from a base template if you have one -->
+{% block content_dashboard %}
+    <h1>location List</h1>
+    <ul>
+        {% for location in locations %}
+            <li>
+                <h2>
+                    <a href="{% url 'dashboard:location-detail' pk=location.pk %}">{{ location.title }}</a>
+                </h2>
+                <!-- Add more location details as needed -->
+            </li>
+        {% empty %}
+            <li>No locations found.</li>
+        {% endfor %}
+    </ul>
+{% endblock content_dashboard %}
