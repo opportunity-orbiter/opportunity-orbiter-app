@@ -1,13 +1,50 @@
 <!-- templates/company_edit.html -->
 {% extends "_dashboard_base.html" %}
 {% block content_dashboard %}
-    <h1>Edit company</h1>
-    <form method="post" action="{% url 'dashboard:company-edit' company.id %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-        <a href="{% url 'dashboard:company-detail' company.id %}">
-            <button type="button">Cancel</button>
-        </a>
-    </form>
+    <h1>Edit Company</h1>
+  <form method="post" action="{% url 'dashboard:company-edit' company.id %}">
+    {% csrf_token %}
+
+    <div>
+      {{ form.name.label_tag }}
+      {{ form.name }}
+    </div>
+
+    <div>
+      {{ form.description.label_tag }}
+      {{ form.description }}
+    </div>
+
+    <div>
+      {{ form.website_url.label_tag }}
+      {{ form.website_url }}
+    </div>
+
+    <div>
+      {{ form.employee_count.label_tag }}
+      {{ form.employee_count }}
+    </div>
+
+    <div>
+      {{ form.employee_reviews_rating.label_tag }}
+      {{ form.employee_reviews_rating }}
+    </div>
+
+    <div>
+      {{ form.job_portal_url.label_tag }}
+      {{ form.job_portal_url }}
+    </div>
+
+    <div>
+      {{ form.competitor.label_tag }}
+      {{ form.competitor }}
+    </div>
+
+    {{ form.business_fields_input.label_tag }}
+    {{ form.business_fields_input }}
+    <p>{{ form.business_fields_input.help_text }}</p>
+
+    <button type="submit">Save Changes</button>
+    <a href="{% url 'dashboard:company-detail' company.id %}"><button type="button">Cancel</button></a>
+  </form>
 {% endblock content_dashboard %}

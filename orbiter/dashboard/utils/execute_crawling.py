@@ -46,10 +46,14 @@ async def run_playwright(site):
 
 
 def execute_crawling_function():
+    # @aethersonata mit aysncio.run können asyncrhone funktionen zu synchronen funtkioneren
     output = asyncio.run(
         run_playwright("https://www.tesla.com/de_DE/careers/search/?site=DE")
     )
     print(output)
+    # aus dem https://www.tesla.com/de_DE/careers/search/?site=DE müssten alle JOb-Anzeigen links rausgezoigen
+
+    # hier müsste nun das ganze langchain ding im Loop uber die gecrawlten Jobanzeigen rein bastenl
     # TODO hier müsste man zuerst die passende company_id und location_id finden
     # Job_Url muss aus playwright_script.py kommen
     # query company and location form database where the name includes "Tesla"

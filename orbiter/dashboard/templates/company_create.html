@@ -1,13 +1,50 @@
 {% extends "_dashboard_base.html" %}
 {% block content_dashboard %}
-    <h2>Create Company</h2>
-    <form method="post" action="{% url 'dashboard:company-create' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Company</button>
-        <button type="reset">Reset</button>
-        <a href="{% url 'dashboard:company-list' %}">
-            <button type="button">Back</button>
-        </a>
-    </form>
+  <h2>Create Company</h2>
+  <form method="post" action="{% url 'dashboard:company-create' %}">
+    {% csrf_token %}
+
+    <div>
+      {{ form.name.label_tag }}
+      {{ form.name }}
+    </div>
+
+    <div>
+      {{ form.description.label_tag }}
+      {{ form.description }}
+    </div>
+
+    <div>
+      {{ form.website_url.label_tag }}
+      {{ form.website_url }}
+    </div>
+
+    <div>
+      {{ form.employee_count.label_tag }}
+      {{ form.employee_count }}
+    </div>
+
+    <div>
+      {{ form.employee_reviews_rating.label_tag }}
+      {{ form.employee_reviews_rating }}
+    </div>
+
+    <div>
+      {{ form.job_portal_url.label_tag }}
+      {{ form.job_portal_url }}
+    </div>
+
+    <div>
+      {{ form.competitor.label_tag }}
+      {{ form.competitor }}
+    </div>
+
+    {{ form.business_fields_input.label_tag }}
+    {{ form.business_fields_input }}
+    <p>{{ form.business_fields_input.help_text }}</p>
+
+    <button type="submit">Save Company</button>
+    <button type="reset">Reset</button>
+    <a href="{% url 'dashboard:company-list' %}"><button type="button">Back</button></a>
+  </form>
 {% endblock content_dashboard %}

@@ -3,11 +3,35 @@
 <!-- Extend from a base template if you have one -->
 {% block content_dashboard %}
     <!-- This is where you put your content -->
-    <h2>{{ company.name }}</h2>
-    <p>{{ company.description }}</p>
-    <p>{{ company.address }}</p>
-    <p>{{ company.city }}</p>
-    <a href="{% url 'dashboard:company-edit' company.id %}">
-        <button>Edit</button>
-    </a>
+
+
+    <div class="col-span-12 flex items-center gap-2 lg:gap-4">
+        <div class="card bg-base-100 w-128">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
+                </h2>
+                <p>ID: {{ company.id }}</p>
+                <p>Beschreibung: {{ company.description|default:"Keine Beschreibung verfügbar." }}</p>
+                <p>
+                    Website: <a href="{{ company.website_url }}" target="_blank">{{ company.website_url }}</a>
+                </p>
+                   <p>
+                    Job-Website: <a href="{{ company.job_portal_url }}" target="_blank">{{ company.job_portal_url }}</a>
+                </p>
+                <p>Geschäftsfelder: {{ company.business_fields|join:", " }}</p>
+                <p>Mitarbeiterbewertungen: {{ company.employee_reviews_rating|default:"Nicht bewertet" }}</p>
+                <p>Anzahl der Jobs: {{ company.jobs_count }}</p>
+                <a href="{% url 'dashboard:company-edit' company.id %}">
+                    <button class="btn btn-danger">Edit</button>
+                </a>
+            </div>
+        </div>
+        <div class="grow">
+            <form action="{% url 'dashboard:crawling' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">Run Crawl</button>
+            </form>
+        </div>
+    </div>
 {% endblock content_dashboard %}

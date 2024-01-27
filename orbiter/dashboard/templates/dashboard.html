@@ -77,14 +77,7 @@
         <!-- /dropdown -->
     </header>
     <!-- header for django data -->
-    <div class="col-span-12 flex items-center gap-2 lg:gap-4">
-        <div class="grow">
-            <form action="{% url 'dashboard:crawling' %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-primary" type="submit">Run Crawl</button>
-            </form>
-        </div>
-    </div>
+
     <!-- stats -->
     <section class="stats stats-vertical col-span-12 w-full shadow-sm xl:stats-horizontal">
         <div class="stat">
