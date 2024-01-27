@@ -2,27 +2,35 @@
 {% extends "_dashboard_base.html" %}
 <!-- Extend from a base template if you have one -->
 {% block content_dashboard %}
-    <h1>Unternehmensliste</h1>
-    <br>
-    <br>
-    <ul>
-        {% for company in companies %}
-            <li>
-                <h2>{{ company.name }}</h2>
-                <p>{{ company.id }}</p>
-                <!-- Füge hier weitere Unternehmensdetails ein wie eine URL ein -->
-                <h2>
-                    <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
-                </h2>
-            </li>
-        {% empty %}
-            <li>Keine Unternehmen gefunden.</li>
-        {% endfor %}
-    </ul>
-    <br>
-    <br>
-    <form action="{% url 'dashboard:company-create' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">New Entry</button>
-    </form>
+    <div>
+        <h1 class="text-3xl font-bold mb-4">Unternehmensliste</h1>
+        <div class="flex gap-8">
+            {% for company in companies %}
+                <div class="card bg-base-100 w-128">
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
+                        </h2>
+                        <p>ID: {{ company.id }}</p>
+                        <p>Beschreibung: {{ company.description|default:"Keine Beschreibung verfügbar." }}</p>
+                        <p>
+                            Website: <a href="{{ company.website_url }}" target="_blank">{{ company.website_url }}</a>
+                        </p>
+                        <p>Geschäftsfelder: {{ company.business_fields|join:", " }}</p>
+                        <p>Mitarbeiterbewertungen: {{ company.employee_reviews_rating|default:"Nicht bewertet" }}</p>
+                        <p>Anzahl der Jobs: {{ company.jobs_count }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <div>Keine Unternehmen gefunden.</div>
+            {% endfor %}
+        </div>
+        <br>
+        <form action="{% url 'dashboard:company-create' %}"
+              method="post"
+              class="mt-4">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Neuer Eintrag</button>
+        </form>
+    </div>
 {% endblock content_dashboard %}

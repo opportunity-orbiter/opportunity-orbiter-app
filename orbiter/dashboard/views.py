@@ -1,3 +1,8 @@
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models.functions import TruncDay
+from django.db.models import Count
+
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -38,7 +43,93 @@ class DashboardView(ListView):
     ordering = ["-name"]
     paginate_by = 10
 
-# ----------Views Company ------------  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        today = timezone.now()
+        start_current_month = today.replace(day=1)
+        end_last_month = start_current_month - timedelta(days=1)
+
+        # Unternehmen
+        total_count_companies = Company.objects.count()
+        last_month_total_companies = Company.objects.filter(
+            created_at__lte=end_last_month
+        ).count()
+
+        # Jobs
+        total_count_jobs = Job.objects.count()
+        last_month_total_jobs = Job.objects.filter(
+            created_at__lte=end_last_month
+        ).count()
+
+        # Prozentuale Differenz für Unternehmen berechnen
+        percentage_difference_companies = self.calculate_percentage_difference(
+            total_count_companies, last_month_total_companies
+        )
+
+        # Prozentuale Differenz für Jobs berechnen
+        percentage_difference_jobs = self.calculate_percentage_difference(
+            total_count_jobs, last_month_total_jobs
+        )
+
+        # Aktuelles Datum als date-Objekt festlegen
+        today = timezone.now().date()  # Verwendung von .date() hier
+        thirty_days_ago = today - timedelta(days=30)
+
+        # Jobs pro Tag für die letzten 30 Tage zählen
+        jobs_per_day = (
+            Job.objects.filter(created_at__date__gte=thirty_days_ago)
+            .annotate(day=TruncDay("created_at"))
+            .values("day")
+            .annotate(count=Count("id"))
+            .order_by("day")
+        )
+
+        # Liste für die letzten 30 Tage initialisieren
+        job_counts = [0] * 30
+        for job in jobs_per_day:
+            print(job)
+            day_index = (
+                job["day"].date() - thirty_days_ago
+            ).days  # Stellen Sie sicher, dass beide vom Typ date sind
+            if 0 <= day_index < 30:
+                job_counts[day_index] = job["count"]
+        # TODO reparieren print(job_counts)
+
+        job_creation_dates = (
+            Job.objects.all()
+            .order_by("created_at")
+            .values_list("created_at", flat=True)
+        )
+        print(job_creation_dates)
+
+        # Kontext aktualisieren
+
+        context.update(
+            {
+                "total_count_companies": total_count_companies,
+                "last_month_total_companies": last_month_total_companies,
+                "percentage_difference_companies": percentage_difference_companies,
+                "total_count_jobs": total_count_jobs,
+                "last_month_total_jobs": last_month_total_jobs,
+                "percentage_difference_jobs": percentage_difference_jobs,
+                "job_counts": job_counts,
+            }
+        )
+
+        return context
+
+    def get_queryset(self):
+        return Company.objects.annotate(jobs_count=Count("jobs"))
+
+    def calculate_percentage_difference(self, current_total, last_month_total):
+        if last_month_total > 0:
+            return (current_total - last_month_total) / last_month_total * 100
+        return 0  # Vermeidung einer Division durch Null
+
+
+# ----------Views Company ------------
+
 
 class CompanyCreateView(CreateView):
     model = Company
@@ -47,7 +138,10 @@ class CompanyCreateView(CreateView):
     ordering = ["-name"]
     paginate_by = 10
     form_class = CompanyForm
-    success_url = reverse_lazy('dashboard:company-list')  # Redirect after successful create    
+    success_url = reverse_lazy(
+        "dashboard:company-list"
+    )  # Redirect after successful create
+
 
 class CompanyListView(ListView):
     model = Company
@@ -56,6 +150,13 @@ class CompanyListView(ListView):
     ordering = ["-name"]
     paginate_by = 10
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.annotate(
+            jobs_count=Count("jobs")
+        )  # Hier wird 'jobs' durch den tatsächlichen Namen des Reverse-Relations-Felds von Job zu Company ersetzt
+
+
 class CompanyDetailView(DetailView):
     model = Company
     template_name = "company_detail.html"
@@ -63,14 +164,15 @@ class CompanyDetailView(DetailView):
     ordering = ["-name"]
     paginate_by = 10
 
+
 class CompanyEditView(UpdateView):
     model = Company
     template_name = "company_edit.html"
     form_class = CompanyForm
-    success_url = reverse_lazy('dashboard:company-list')
+    success_url = reverse_lazy("dashboard:company-list")
 
 
-# ----------Views Location ------------  
+# ----------Views Location ------------
 
 
 class LocationCreateView(CreateView):
@@ -80,7 +182,10 @@ class LocationCreateView(CreateView):
     ordering = ["-name"]
     paginate_by = 10
     form_class = LocationForm
-    success_url = reverse_lazy('dashboard:location-list')  # Redirect after successful create    
+    success_url = reverse_lazy(
+        "dashboard:location-list"
+    )  # Redirect after successful create
+
 
 class LocationListView(ListView):
     model = Location
@@ -89,6 +194,7 @@ class LocationListView(ListView):
     ordering = ["-name"]
     paginate_by = 10
 
+
 class LocationDetailView(DetailView):
     model = Location
     template_name = "location_detail.html"
@@ -96,20 +202,23 @@ class LocationDetailView(DetailView):
     ordering = ["-name"]
     paginate_by = 10
 
+
 class LocationEditView(UpdateView):
     model = Location
     template_name = "location_edit.html"
     form_class = LocationForm
-    success_url = reverse_lazy('dashboard:location-list')
+    success_url = reverse_lazy("dashboard:location-list")
 
 
-# ----------Views JOBS ------------   
+# ----------Views JOBS ------------
+
 
 class JobCreateView(CreateView):
     model = Job
     template_name = "job_create.html"
     form_class = JobForm
-    success_url = reverse_lazy('dashboard:job-list')    
+    success_url = reverse_lazy("dashboard:job-list")
+
 
 class JobListView(ListView):
     model = Job
@@ -118,31 +227,31 @@ class JobListView(ListView):
     ordering = ["id"]
     paginate_by = 10
 
+
 class JobDetailView(DetailView):
     model = Job
     template_name = "job_detail.html"
     context_object_name = "job"
-    success_url = reverse_lazy('dashboard:job-list') 
+    success_url = reverse_lazy("dashboard:job-list")
+
 
 class JobEditView(UpdateView):
     model = Job
     template_name = "job_edit.html"
     form_class = JobForm
-    success_url = reverse_lazy('dashboard:job-list')
-    
-
+    success_url = reverse_lazy("dashboard:job-list")
 
 
 def execute_crawl_view(request):
-    execute_crawling_function()
+    json = execute_crawling_function()
+    print(json)
     return HttpResponse("Crawling script executed.")
+
 
 # def open_company_form_create(request):
 
 
-
 # def open_company_form_edit(request):
-
 
 
 # TODO Delete, Edit and insert manually views

@@ -39,51 +39,9 @@
                             </div>
                         </div>
                         <span>
-                            <b>New message</b>
+                            <b>Opportunity Orbiter</b>
                             <br />
-                            Alice: Hi, did you get my files?
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="gap-4">
-                        <div class="avatar">
-                            <div class="w-8 rounded-full">
-                                <img src="https://picsum.photos/80/80?2" />
-                            </div>
-                        </div>
-                        <span>
-                            <b>Reminder</b>
-                            <br />
-                            Your meeting is at 10am
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="gap-4">
-                        <div class="avatar">
-                            <div class="w-8 rounded-full">
-                                <img src="https://picsum.photos/80/80?3" />
-                            </div>
-                        </div>
-                        <span>
-                            <b>New payment</b>
-                            <br />
-                            Received $2500 from John Doe
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="gap-4">
-                        <div class="avatar">
-                            <div class="w-8 rounded-full">
-                                <img src="https://picsum.photos/80/80?4" />
-                            </div>
-                        </div>
-                        <span>
-                            <b>New payment</b>
-                            <br />
-                            Received $1900 from Alice
+                            Willkommen auf Ihrem Dashboard
                         </span>
                     </a>
                 </li>
@@ -100,19 +58,19 @@
             <ul tabindex="0"
                 class="menu dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl">
                 <li>
-                    <a>Profile</a>
+                    <a>Profil</a>
                 </li>
                 <li>
                     <a>
-                        Inbox
+                        Nachrichten
                         <span class="badge badge-success">12</span>
                     </a>
                 </li>
                 <li>
-                    <a>Settings</a>
+                    <a>Einstellungen</a>
                 </li>
                 <li>
-                    <a>Logout</a>
+                    <a>Ausloggen</a>
                 </li>
             </ul>
         </div>
@@ -130,14 +88,22 @@
     <!-- stats -->
     <section class="stats stats-vertical col-span-12 w-full shadow-sm xl:stats-horizontal">
         <div class="stat">
-            <div class="stat-title">Total Companies</div>
-            <div class="stat-value">1</div>
-            <div class="stat-desc">21% more than last month</div>
+            <div class="stat-title">Ausgewertete Firmen</div>
+            <div class="stat-value">{{ total_count_companies }}</div>
+            {% if percentage_difference_companies >= 0 %}
+                <div class="stat-desc">↗︎ {{ percentage_difference_companies|floatformat:2 }}% ({{ last_month_total_companies }})</div>
+            {% else %}
+                <div class="stat-desc">↘︎ {{ percentage_difference_companies|floatformat:2 }}% ({{ last_month_total_companies }})</div>
+            {% endif %}
         </div>
         <div class="stat">
-            <div class="stat-title">Total Job listings</div>
-            <div class="stat-value">89,400</div>
-            <div class="stat-desc">21% more than last month</div>
+            <div class="stat-title">Ausgewertete Jobanzeigen</div>
+            <div class="stat-value">{{ total_count_jobs }}</div>
+            {% if percentage_difference_jobs >= 0 %}
+                <div class="stat-desc">↗︎ {{ percentage_difference_jobs|floatformat:2 }}% mehr als letzten Monat</div>
+            {% else %}
+                <div class="stat-desc">↘︎ {{ percentage_difference_jobs|floatformat:2 }}% weniger als letzten Monat</div>
+            {% endif %}
         </div>
     </section>
     <!-- /stats -->
@@ -145,28 +111,38 @@
     <section class="card col-span-12 overflow-hidden bg-base-100 shadow-sm xl:col-span-6">
         <div class="card-body grow-0">
             <h2 class="card-title">
-                <a class="link-hover link">Companies</a>
+                <a class="link-hover link">Firmen</a>
             </h2>
         </div>
         <div class="overflow-x-auto">
             <table class="table table-zebra">
+                <thead>
+                    <tr>
+                        <th>Unternehmen</th>
+                        <th>Mitarbeiteranzahl</th>
+                        <th>Letztes Crawling-Datum</th>
+                        <th>Anzahl der Jobs</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for company in companies %}
                         <tr>
                             <td>
                                 <a href="{% url 'dashboard:company-detail' company.id %}">{{ company.name }}</a>
                             </td>
-                            <td>{{ company.employee_count }}</td>
-                            <td>{{ company.last_crawled_at }}</td>
+                            <td class="{% if company.employee_count > 50 %}text-success{% else %}text-warning{% endif %}">
+                                {{ company.employee_count|default:'N/A' }}
+                            </td>
+                            <td>{{ company.last_crawled_at|date:"d.m.Y H:i" }}</td>
                             <td>
-                                <svg data-src="https://unpkg.com/heroicons/20/solid/arrow-up-right.svg"
-                                     class="inline-block h-5 w-5 text-success">
-                                </svg>
-                                company.jobs
+                                <!-- Stellen Sie sicher, dass die Anzahl der Jobs richtig berechnet wird -->
+                                {{ company.jobs_count }}
                             </td>
                         </tr>
                     {% empty %}
-                        <li>Keine Unternehmen gefunden.</li>
+                        <tr>
+                            <td colspan="4">Keine Unternehmen gefunden.</td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -176,15 +152,15 @@
     <!-- card -->
     <section class="card col-span-12 bg-primary text-primary-content shadow-sm xl:col-span-6">
         <div class="card-body pb-0">
-            <h2 class="card-title">21,500 USD</h2>
-            <a class="link-hover link text-xs">Revenue report →</a>
+            <h2 class="card-title">{{ total_count_jobs }} Jobanzeigen</h2>
+            <a class="link-hover link text-xs">Alle Jobanzeigen ansehen →</a>
         </div>
-        <tc-column class="h-full w-full p-4 pt-0 [--shape-color:oklch(var(--pc))]" values="[12,10,12,4,13,16,14,10,12,11,17,18,16,17,20,14,15,13,12,14]" min="0" shape-radius="4" shape-gap="4"></tc-column>
+        <tc-column class="h-full w-full p-4 pt-0 [--shape-color:oklch(var(--pc))]" values="{{ job_counts }}" min="0" shape-radius="4" shape-gap="4"></tc-column>
     </section>
     <!-- /card -->
-    <!-- card -->
-    <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
-        <div class="card-body">
+    {% comment %} TODO <!-- card -->
+                                                                    <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
+                                                                        <div class="card-body">
             <h2 class="card-title">Sources</h2>
             <div class="flex items-center gap-10">
                 <div class="grow">
@@ -227,7 +203,6 @@
         </div>
         <tc-line class="h-full w-full rounded-box [--area-opacity:.2] [--shape-color:#A838FF]" values="[12,10,12,4,13,16,14,10,12,11,17,18,16,17,20,14,15,13,12,14]" min="0"></tc-line>
     </section>
-    <!-- /card -->
-    <!-- card -->
-    <!-- /content -->
+<!-- /card --> {% endcomment %}
+<!-- /content -->
 {% endblock content_dashboard %}

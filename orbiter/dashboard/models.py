@@ -30,6 +30,8 @@ class Company(models.Model):
         related_name="competitors",
     )
     last_crawled_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -114,9 +116,12 @@ class Job(models.Model):
         "Location", on_delete=models.CASCADE, related_name="jobs"
     )
 
+    last_crawled_date = models.DateField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ["-vacant_since"]  # Order by recent vacancies
-

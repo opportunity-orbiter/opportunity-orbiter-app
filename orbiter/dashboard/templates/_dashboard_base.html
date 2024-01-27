@@ -34,21 +34,25 @@
                 </div>
                 <ul class="menu">
                     <li>
-                        <a class="active">
+                        <a href="{% url 'dashboard:dashboard' %}">
                             <svg data-src="https://unpkg.com/heroicons/20/solid/home.svg"
-                                 class="h-5 w-5"
-                                 href="{% url 'dashboard:dashboard' %}">
+                                 class="h-5 w-5">
                             </svg>
                             Dashboard
                         </a>
                     </li>
                     <li>
-                        <details>
+                        <a href="{% url 'dashboard:company-list' %}">
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/squares-2x2.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Firmen
+                        </a>
+                        {% comment %} TODO anpassen <details>
                             <summary>
-                                <svg data-src="https://unpkg.com/heroicons/20/solid/squares-2x2.svg"
-                                     class="h-5 w-5">
+                                <svg data-src="https://unpkg.com/heroicons/20/solid/squares-2x2.svg" class="h-5 w-5">
                                 </svg>
-                                Companies
+                                Firmen
                             </summary>
                             <ul>
                                 {% for company in companies %}
@@ -59,7 +63,23 @@
                                     <li>Keine Unternehmen gefunden.</li>
                                 {% endfor %}
                             </ul>
-                        </details>
+                        </details> {% endcomment %}
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard:job-list' %}">
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/briefcase.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Jobs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dj-admin">
+                            <svg data-src="https://unpkg.com/heroicons/20/solid/adjustments-horizontal.svg"
+                                 class="h-5 w-5">
+                            </svg>
+                            Django-Admin
+                        </a>
                     </li>
                     <li>
                         <div class="flex flex-col w-full border-opacity-50">

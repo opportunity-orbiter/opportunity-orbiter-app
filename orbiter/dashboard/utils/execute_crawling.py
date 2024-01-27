@@ -46,7 +46,8 @@ async def run_playwright(site):
 
 # TODO Reparieren
 def execute_crawling_function():
-    execute_crawling_function_inner()
+    json = execute_crawling_function_inner()
+    return json
 
 
 async def execute_crawling_function_inner():

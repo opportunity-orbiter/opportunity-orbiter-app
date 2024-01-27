@@ -10,7 +10,7 @@ from .core import api, views
 
 urlpatterns = [
     # admin
-    path("dj-admin/", admin.site.urls),
+    path("dj-admin/", admin.site.urls, name="dj-admin"),
     # flatpages
     path("terms/", flatpage_views.flatpage, {"url": "/terms/"}, name="terms"),
     # api
