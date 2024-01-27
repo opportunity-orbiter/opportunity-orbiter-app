@@ -22,12 +22,8 @@ app_name = "dashboard"
 
 
 urlpatterns = [
-    # send_email
-    # standard views for index
     path("", DashboardView.as_view(), name="dashboard"),
-    # view for all companies
     path("send-email/", send_email, name="send_email"),
-    # company create view
     path("companies/new/", CompanyCreateView.as_view(), name="company-create"),
     path("companies/", CompanyListView.as_view(), name="company-list"),
     path("companies/<int:pk>/", CompanyDetailView.as_view(), name="company-detail"),
@@ -40,8 +36,7 @@ urlpatterns = [
     path("locations/", LocationListView.as_view(), name="location-list"),
     path("locations/<int:pk>/", LocationDetailView.as_view(), name="location-detail"),
     path("location/<int:pk>/edit", LocationEditView.as_view(), name="location-edit"),
-    # view for all companies
+
     path("crawling/", crawling, name="crawling"),
-    # Weitere URLs nach Bedarf
-    # TODO implement the views for the other models @Alex
+
 ]

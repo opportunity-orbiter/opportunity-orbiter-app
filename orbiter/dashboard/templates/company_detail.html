@@ -4,7 +4,6 @@
 {% block content_dashboard %}
     <!-- This is where you put your content -->
 
-
     <div class="col-span-12 flex items-center gap-2 lg:gap-4">
         <div class="card bg-base-100 w-128">
             <div class="card-body">
@@ -16,7 +15,7 @@
                 <p>
                     Website: <a href="{{ company.website_url }}" target="_blank">{{ company.website_url }}</a>
                 </p>
-                   <p>
+                <p>
                     Job-Website: <a href="{{ company.job_portal_url }}" target="_blank">{{ company.job_portal_url }}</a>
                 </p>
                 <p>Geschäftsfelder: {{ company.business_fields|join:", " }}</p>
@@ -28,8 +27,11 @@
             </div>
         </div>
         <div class="grow">
+            <!-- Hidden input field for post request -->
             <form action="{% url 'dashboard:crawling' %}" method="post">
                 {% csrf_token %}
+                <input type="hidden" name="job_portal_url" value="{{ company.job_portal_url }}">
+                <input type="hidden" name="company_id" value="{{ company.id }}">
                 <button class="btn btn-primary" type="submit">Run Crawl</button>
             </form>
         </div>

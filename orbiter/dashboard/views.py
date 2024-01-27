@@ -243,18 +243,23 @@ class JobEditView(UpdateView):
 
 def crawling(request):
     if request.method == "POST":
-        # json = execute_crawling_function()
-        # print(json)
-        async_task()  # Löst die Huey-Task aus
+        print("hello")
+        job_portal_url = request.POST.get('job_portal_url')
+        company_id = request.POST.get('company_id')
+        print(job_portal_url)
+        print(company_id )
+        # Perform crawling logic specific to the job_portal_url
+        # For example:
+        # json_data = execute_crawling_function(job_portal_url)
+
+        # Trigger the asynchronous task
+        # async_task(job_portal_url)
+
+        print("async task start")
+        json = execute_crawling_function(job_portal_url)
+        print(json)
+
         return redirect("dashboard:dashboard")
+
+    # The code here will be executed for GET requests or if the form is not submitted
     return render(request, "crawling_template.html")
-
-
-# def open_company_form_create(request):
-
-
-# def open_company_form_edit(request):
-
-
-# TODO Delete, Edit and insert manually views
-# create basic views for deleting jobs/company/other from database, editing existing jobs/company/other from list and a view to insert into database
