@@ -1,5 +1,9 @@
 # Opportunity Orbiter
 
+## Link
+
+<https://plankton-app-ire4u.ondigitalocean.app/>
+
 ## Beschreibung
 
 Unser Projekt umfasst die Entwicklung einer Django-App mit einem integrierten Webcrawler, der speziell auf die Bewertung von Jobanzeigen aus dem IT-Sektor im Berliner Raum abzielt, darunter Start-ups, Unternehmen und Beratungen. Wir möchten die Themen Web Crawling, Datenhaltung, Analytics und Webinterface bearbeiten. Eine besondere Herausforderung wird es sein, Unternehmensseiten zu crawlen. Zusätzlich planen wir, ein Large Language Model (LLM) einzubeziehen, speziell ein frei verfügbares Modell wie LeoLM/leo-hessianai-13b-chat · Hugging Face, um die erhobenen Daten zu analysieren.

@@ -161,3 +161,4 @@ sendgrid.env
 
 # Sratch
 .scratch/
+.DS_Store
