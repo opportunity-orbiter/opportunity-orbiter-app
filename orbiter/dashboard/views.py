@@ -96,6 +96,13 @@ class DashboardView(ListView):
             if 0 <= day_index < 30:
                 job_counts[day_index] = job["count"]
         # TODO reparieren print(job_counts)
+        # Kontext aktualisieren
+        # job_creation_dates = (
+        #     Job.objects.all()
+        #     .order_by("created_at")
+        #     .values_list("created_at", flat=True)
+        # )
+        # print(job_creation_dates)
 
         context.update(
             {
