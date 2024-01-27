@@ -13,6 +13,8 @@ PROJECT_NAME = env.str("PROJECT_NAME", default="Sidewinder")
 
 DEBUG = env.bool("DJANGO_DEBUG")
 
+API_KEY_OPENAI = env.str("API_KEY_OPENAI")
+
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     "huey.contrib.djhuey",
     "bx_django_utils",
     "huey_monitor",
+    "django.contrib.humanize",
     "orbiter.core",
     "orbiter.crawler",
     "orbiter.dashboard",
@@ -168,7 +171,7 @@ if DEBUG:
 
 # Defaults
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "de-de"
 
 TIME_ZONE = "UTC"
 

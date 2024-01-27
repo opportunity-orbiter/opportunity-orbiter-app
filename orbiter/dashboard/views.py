@@ -3,6 +3,9 @@ from datetime import timedelta
 from django.db.models.functions import TruncDay
 from django.db.models import Count
 
+from orbiter.dashboard.utils.execute_crawling import execute_crawling_function
+from .tasks import async_task
+
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -14,7 +17,6 @@ from django.urls import reverse_lazy
 
 from .forms import EmailForm, CompanyForm, JobForm, LocationForm
 from .models import Company, Location, Job
-from .utils.execute_crawling import execute_crawling_function
 
 
 def send_email(request):
@@ -41,7 +43,6 @@ class DashboardView(ListView):
     template_name = "dashboard.html"
     context_object_name = "companies"
     ordering = ["-name"]
-    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -88,22 +89,13 @@ class DashboardView(ListView):
         # Liste für die letzten 30 Tage initialisieren
         job_counts = [0] * 30
         for job in jobs_per_day:
-            print(job)
+            # print(job)
             day_index = (
                 job["day"].date() - thirty_days_ago
             ).days  # Stellen Sie sicher, dass beide vom Typ date sind
             if 0 <= day_index < 30:
                 job_counts[day_index] = job["count"]
         # TODO reparieren print(job_counts)
-
-        job_creation_dates = (
-            Job.objects.all()
-            .order_by("created_at")
-            .values_list("created_at", flat=True)
-        )
-        print(job_creation_dates)
-
-        # Kontext aktualisieren
 
         context.update(
             {
@@ -242,10 +234,13 @@ class JobEditView(UpdateView):
     success_url = reverse_lazy("dashboard:job-list")
 
 
-def execute_crawl_view(request):
-    json = execute_crawling_function()
-    print(json)
-    return HttpResponse("Crawling script executed.")
+def crawling(request):
+    if request.method == "POST":
+        # json = execute_crawling_function()
+        # print(json)
+        async_task()  # Löst die Huey-Task aus
+        return redirect("dashboard:dashboard")
+    return render(request, "crawling_template.html")
 
 
 # def open_company_form_create(request):

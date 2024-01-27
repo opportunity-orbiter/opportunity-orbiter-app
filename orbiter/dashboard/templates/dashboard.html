@@ -79,7 +79,7 @@
     <!-- header for django data -->
     <div class="col-span-12 flex items-center gap-2 lg:gap-4">
         <div class="grow">
-            <form action="{% url 'dashboard:run-crawling' %}" method="post">
+            <form action="{% url 'dashboard:crawling' %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-primary" type="submit">Run Crawl</button>
             </form>
@@ -111,7 +111,7 @@
     <section class="card col-span-12 overflow-hidden bg-base-100 shadow-sm xl:col-span-6">
         <div class="card-body grow-0">
             <h2 class="card-title">
-                <a class="link-hover link">Firmen</a>
+                <a class="link-hover link" href="{% url 'dashboard:company-list' %}">Firmen</a>
             </h2>
         </div>
         <div class="overflow-x-auto">
@@ -153,14 +153,14 @@
     <section class="card col-span-12 bg-primary text-primary-content shadow-sm xl:col-span-6">
         <div class="card-body pb-0">
             <h2 class="card-title">{{ total_count_jobs }} Jobanzeigen</h2>
-            <a class="link-hover link text-xs">Alle Jobanzeigen ansehen →</a>
+            <a class="link-hover link text-xs" href="{% url 'dashboard:job-list' %}">Alle Jobanzeigen ansehen →</a>
         </div>
         <tc-column class="h-full w-full p-4 pt-0 [--shape-color:oklch(var(--pc))]" values="{{ job_counts }}" min="0" shape-radius="4" shape-gap="4"></tc-column>
     </section>
     <!-- /card -->
     {% comment %} TODO <!-- card -->
-                                                                    <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
-                                                                        <div class="card-body">
+                                                                                        <section class="card col-span-12 bg-base-100 shadow-sm xl:col-span-4">
+                                                                                            <div class="card-body">
             <h2 class="card-title">Sources</h2>
             <div class="flex items-center gap-10">
                 <div class="grow">

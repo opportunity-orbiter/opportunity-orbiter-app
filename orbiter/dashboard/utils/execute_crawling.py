@@ -1,7 +1,8 @@
-# playwright_script.py
-
+import asyncio
 from playwright.async_api import async_playwright
 from bs4 import BeautifulSoup
+from asgiref.sync import sync_to_async
+
 
 from orbiter.dashboard.models import Job, Company, Location
 
@@ -44,14 +45,10 @@ async def run_playwright(site):
     return data, page_source, links
 
 
-# TODO Reparieren
 def execute_crawling_function():
-    json = execute_crawling_function_inner()
-    return json
-
-
-async def execute_crawling_function_inner():
-    output = await run_playwright("https://www.tesla.com/de_DE/careers/search/?site=DE")
+    output = asyncio.run(
+        run_playwright("https://www.tesla.com/de_DE/careers/search/?site=DE")
+    )
     print(output)
     # TODO hier müsste man zuerst die passende company_id und location_id finden
     # Job_Url muss aus playwright_script.py kommen
