@@ -23,27 +23,35 @@ class CompanyForm(forms.ModelForm):
         if data:
             # Convert comma-separated values to a Python list
             values = [s.strip() for s in data.split(',')]
-            # Save the list as a JSON array without escaped double quotes
-            print(values)
-
-
-            # TODO vielleicht ist der DUMP ja nichts das richtige
             return values
         return None
 
-    def init(self, args, **kwargs):
-        super().init(args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        print("hello")
 
         # If instance has business_fields, populate business_fields_input with a string
         if self.instance.business_fields:
-            self.fields['business_fields_input'].initial = ', '.join(json.loads(self.instance.business_fields))
-            # You can customize the separator based on your preferences
+            print("hello")
+            print(self.instance.business_fields)
+            try:
+                print(self.instance.business_fields)
+                business_fields_str = ', '.join(self.instance.business_fields)
+                print(business_fields_str)
+                self.fields['business_fields_input'].initial = business_fields_str
+
+            except json.JSONDecodeError as e:
+                # Handle the case where business_fields is not a valid JSON string
+                print(f"Error decoding business_fields: {e}")
+        else:
+            print("no business_fields")
 
     def save(self, commit=True):
         # Set the value of business_fields before saving
         self.instance.business_fields = self.cleaned_data['business_fields_input']
-
         return super().save(commit)
+
 
 
 class JobForm(forms.ModelForm):
