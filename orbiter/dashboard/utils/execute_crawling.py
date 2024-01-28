@@ -9,7 +9,6 @@ from langchain.prompts import BasePromptTemplate, ChatPromptTemplate, PromptTemp
 from orbiter.dashboard.models import Job, Company, Location
 import asyncio
 
-from turtle import title
 from typing import List
 
 from numpy import short
@@ -64,9 +63,11 @@ async def crawl_links_from_portal(job_portal_url):
 #     print("output:")
 #     print(output)
 
-async def check_if_job_link(links):
 
-    llm = ChatOpenAI(temperature=0.7, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY)
+async def check_if_job_link(links):
+    llm = ChatOpenAI(
+        temperature=0.7, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY
+    )
 
     structured_schema = {
         "properties": {
@@ -92,10 +93,10 @@ async def check_if_job_link(links):
     print("text:")
     job_urls = extraction_chain.invoke(links[2][0:5], verbose=True)
 
-    return(job_urls)
+    return job_urls
+
 
 async def check_if_job_link2(links):
-
     llm = ChatOpenAI(
         temperature=0, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY
     )
@@ -146,11 +147,9 @@ async def check_if_job_link2(links):
 
     print("Extraction chain created")
     chain_output = extraction_chain.invoke(links[2], verbose=True)
-    
-    text_entries = chain_output.get('text', [])
+
+    text_entries = chain_output.get("text", [])
     print(text_entries)
-
-
 
 
 async def crawl_job(url):
@@ -177,15 +176,12 @@ async def crawl_job(url):
     return job_text
 
 
-
-
 async def process_job_text(job_text):
     model = ChatOpenAI(
         temperature=0.7,
         model="gpt-3.5-turbo-1106",
         openai_api_key=OPENAI_KEY,
     )
-
 
     # Define your desired data structure.
     class JobProfile(BaseModel):
@@ -251,7 +247,6 @@ async def process_job_text(job_text):
             description="The complete text of the job ad",
         )
 
-
     # And a query intented to prompt a language model to populate the data structure.
     quality_evaluation_query = f"""Du analysierst die Stellenanzeige und bewertest die Qualität der Stelle. Deine Ergebnisse fasst Du kurz zusammen. Beachte dazu die Hinweise in den descriptons der properties.
     Passage:"""
@@ -272,8 +267,8 @@ async def process_job_text(job_text):
         config={"callbacks": [ConsoleCallbackHandler()]},
     )
 
-    return(job_json)
-   
+    return job_json
+
 
 async def save_job_from_json(job_json):
     # Map JSON values to Job attributes
@@ -308,14 +303,14 @@ async def save_job_from_json(job_json):
 async def start_crawl_and_save(job_portal_url):
     links = await crawl_links_from_portal(job_portal_url)
     job_links = await check_if_job_link(links)
-    
+
     tasks = []
-    for job in job_links['text'][:5]:  #5 iterations for testing. <---
-        url = job.get('url', '')
+    for job in job_links["text"][:5]:  # 5 iterations for testing. <---
+        url = job.get("url", "")
         job_text = await crawl_job(url)
         job_json = await process_job_text(job_text)
         task = asyncio.create_task(save_job_from_json(job_json))
         tasks.append(task)
-    
+
     await asyncio.gather(*tasks)
     print("All jobs saved in the database")
