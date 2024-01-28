@@ -2,8 +2,8 @@ from django.utils import timezone
 from datetime import timedelta
 from django.db.models.functions import TruncDay
 from django.db.models import Count
-
-from orbiter.dashboard.utils.execute_crawling import execute_crawling_function
+from orbiter.dashboard.utils.execute_crawling import start_crawl_and_save
+import asyncio
 from .tasks import async_task
 
 from django.core.mail import send_mail
@@ -243,22 +243,15 @@ class JobEditView(UpdateView):
 
 def crawling(request):
     if request.method == "POST":
-        print("hello")
         job_portal_url = request.POST.get('job_portal_url')
         company_id = request.POST.get('company_id')
         print(job_portal_url)
         print(company_id )
-        # Perform crawling logic specific to the job_portal_url
-        # For example:
-        # json_data = execute_crawling_function(job_portal_url)
 
         # Trigger the asynchronous task
         # async_task(job_portal_url)
 
-        print("async task start")
-        json = execute_crawling_function(job_portal_url)
-        print(json)
-
+        asyncio.run(start_crawl_and_save(job_portal_url))
         return redirect("dashboard:dashboard")
 
     # The code here will be executed for GET requests or if the form is not submitted

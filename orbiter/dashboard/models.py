@@ -91,7 +91,7 @@ class Job(models.Model):
         max_digits=10, decimal_places=2, validators=[MinValueValidator(0)]
     )
     # vacant since is the date on created on which the job was first posted
-    vacant_since = models.DateField(auto_now_add=True)
+    vacant_since = models.DateField(auto_now_add=True, blank=True, null=True)
 
     start_date = models.DateField(blank=True, null=True)
     offline_since = models.DateField(blank=True, null=True)

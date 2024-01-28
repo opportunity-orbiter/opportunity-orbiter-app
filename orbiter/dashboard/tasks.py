@@ -1,16 +1,18 @@
 from huey import crontab
 from huey.contrib.djhuey import task, db_task
 import time
+import asyncio
 
 
-from orbiter.dashboard.utils.execute_crawling import execute_crawling_function
+from orbiter.dashboard.utils.execute_crawling import start_crawl_and_save
 
 
 @task()
-def async_task(job_portal_url):
+async def async_task(job_portal_url):
     # Simuliert eine asynchrone Operation
     # time.sleep(5)
     print("async task start")
-    json = execute_crawling_function(job_portal_url)
-    print(json)
+    asyncio.run(start_crawl_and_save())
+        
+
     return "Task Completed"
