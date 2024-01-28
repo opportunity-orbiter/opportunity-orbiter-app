@@ -1,4 +1,5 @@
 from django.urls import path
+import orbiter.dashboard.views
 
 from orbiter.dashboard.views import (
     DashboardView,
@@ -20,7 +21,6 @@ from orbiter.dashboard.views import (
 
 app_name = "dashboard"
 
-
 urlpatterns = [
     path("", DashboardView.as_view(), name="dashboard"),
     path("send-email/", send_email, name="send_email"),
@@ -36,7 +36,5 @@ urlpatterns = [
     path("locations/", LocationListView.as_view(), name="location-list"),
     path("locations/<int:pk>/", LocationDetailView.as_view(), name="location-detail"),
     path("location/<int:pk>/edit", LocationEditView.as_view(), name="location-edit"),
-
     path("crawling/", crawling, name="crawling"),
-
 ]

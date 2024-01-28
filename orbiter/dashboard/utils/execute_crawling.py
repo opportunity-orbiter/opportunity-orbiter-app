@@ -17,6 +17,8 @@ from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain.callbacks.tracers import ConsoleCallbackHandler
 
+from orbiter.settings import OPENAI_KEY
+
 
 async def crawl_links_from_portal(job_portal_url):
     print("runplaywright")
