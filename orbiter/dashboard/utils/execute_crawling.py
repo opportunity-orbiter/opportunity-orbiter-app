@@ -10,7 +10,6 @@ from orbiter.dashboard.models import Job, Company, Location
 import asyncio
 
 
-
 async def run_playwright(job_portal_url):
     print("runplaywright")
     data = ""
@@ -50,19 +49,13 @@ async def run_playwright(job_portal_url):
     return data, page_source, links
 
 
-
 def execute_crawling_function(job_portal_url):
     # @aethersonata mit aysncio.run können asyncrhone funktionen zu synchronen funtkioneren
-    output = asyncio.run(
-        run_playwright(job_portal_url)
-    )
+    output = asyncio.run(run_playwright(job_portal_url))
     print("output:")
     print(output)
 
-
-
     # llm = ChatOpenAI(temperature=0.7, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY)
-
 
     # structured_schema = {
     #     "properties": {
@@ -76,7 +69,6 @@ def execute_crawling_function(job_portal_url):
     #     "required": ["url", "title", "link_is_an_individual_job_ad"],
     # }
 
-
     # # parser nutzen um die links zu extrahieren
 
     # extraction_chain = create_extraction_chain(
@@ -85,21 +77,20 @@ def execute_crawling_function(job_portal_url):
     #     verbose=True,
     # )
 
-
     # # check the extraction chain on the first 20 objects in output[2]
     # print("text:")
     # text = extraction_chain.invoke(output[2][0:5], verbose=True)
     # print(text)
 
-
-
-    llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY)
+    llm = ChatOpenAI(
+        temperature=0, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY
+    )
     structured_schema = {
-    "properties": {
-        "video_name": {"type": "string"},
-        "views": {"type": "integer"},
-    },
-    "required": ["video_name", "views"],
+        "properties": {
+            "video_name": {"type": "string"},
+            "views": {"type": "integer"},
+        },
+        "required": ["video_name", "views"],
     }
 
     # write a structured schema that extracts all links as enmus from the page giving the text of the link and the url
@@ -111,7 +102,10 @@ def execute_crawling_function(job_portal_url):
                 "description": "All jobs and their links on the page",
                 "items": {
                     "properties": {
-                        "title": {"type": "string", "description": "The title of the job"},
+                        "title": {
+                            "type": "string",
+                            "description": "The title of the job",
+                        },
                         "url": {"type": "string", "description": "The url of the job"},
                     },
                 },
@@ -127,7 +121,6 @@ def execute_crawling_function(job_portal_url):
         },
         "required": ["url", "title"],
     }
-
 
     # parser nutzen um die links zu extrahieren
 
@@ -168,8 +161,6 @@ async def run_playwright(site):
 
         await browser.close()
     return data
-
-
 
 
 output = run_playwright(

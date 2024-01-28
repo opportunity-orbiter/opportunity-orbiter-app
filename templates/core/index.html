@@ -18,29 +18,10 @@
                                  fill="none"
                                  viewBox="0 0 24 24"
                                  stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M4 6h16M4 12h8m-8 6h16"/>
                             </svg>
                         </div>
-                        <ul tabindex="0"
-                            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a>Item 1</a>
-                            </li>
-                            <li>
-                                <a>Parent</a>
-                                <ul class="p-2">
-                                    <li>
-                                        <a>Submenu 1</a>
-                                    </li>
-                                    <li>
-                                        <a>Submenu 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>Item 3</a>
-                            </li>
-                        </ul>
                     </div>
                     <a class="btn btn-ghost text-xl">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -48,12 +29,17 @@
                              height="32"
                              viewBox="0 0 32 32">
                             <defs>
-                            <style>.cls-1 {fill: none;}</style>
+                                <style>.cls-1 {
+                                    fill: none;
+                                }</style>
                             </defs>
-                            <path d="M22.9141,16.5l2.7929-2.793a.9994.9994,0,0,0,0-1.414L23.4141,10,25.5,7.9141,28.5859,11,30,9.5859,22.4141,2,21,3.4141,24.0859,6.5,22,8.5859,19.707,6.293a.9994.9994,0,0,0-1.414,0L15.5,9.0859,8.707,2.293a.9994.9994,0,0,0-1.414,0l-5,5a.9994.9994,0,0,0,0,1.414L9.0859,15.5,6.293,18.293a.9994.9994,0,0,0,0,1.414L8.5859,22,6.5,24.0859,3.4141,21,2,22.4141,9.5859,30,11,28.5859,7.9141,25.5,10,23.4141l2.293,2.2929a.9995.9995,0,0,0,1.414,0L16.5,22.9141l6.793,6.7929a.9995.9995,0,0,0,1.414,0l5-5a.9994.9994,0,0,0,0-1.414ZM4.4141,8,8,4.4141,10.0859,6.5,6.5,10.0859Zm3.5,3.5L11.5,7.9141,14.0859,10.5,10.5,14.0859ZM13,23.5859,8.4141,19,19,8.4141,23.5859,13ZM17.9141,21.5,21.5,17.9141,24.0859,20.5,20.5,24.0859ZM24,27.5859,21.9141,25.5,25.5,21.9141,27.5859,24Z" transform="translate(0 0)" />
-                            <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32" />
+                            <path
+                                d="M22.9141,16.5l2.7929-2.793a.9994.9994,0,0,0,0-1.414L23.4141,10,25.5,7.9141,28.5859,11,30,9.5859,22.4141,2,21,3.4141,24.0859,6.5,22,8.5859,19.707,6.293a.9994.9994,0,0,0-1.414,0L15.5,9.0859,8.707,2.293a.9994.9994,0,0,0-1.414,0l-5,5a.9994.9994,0,0,0,0,1.414L9.0859,15.5,6.293,18.293a.9994.9994,0,0,0,0,1.414L8.5859,22,6.5,24.0859,3.4141,21,2,22.4141,9.5859,30,11,28.5859,7.9141,25.5,10,23.4141l2.293,2.2929a.9995.9995,0,0,0,1.414,0L16.5,22.9141l6.793,6.7929a.9995.9995,0,0,0,1.414,0l5-5a.9994.9994,0,0,0,0-1.414ZM4.4141,8,8,4.4141,10.0859,6.5,6.5,10.0859Zm3.5,3.5L11.5,7.9141,14.0859,10.5,10.5,14.0859ZM13,23.5859,8.4141,19,19,8.4141,23.5859,13ZM17.9141,21.5,21.5,17.9141,24.0859,20.5,20.5,24.0859ZM24,27.5859,21.9141,25.5,25.5,21.9141,27.5859,24Z"
+                                transform="translate(0 0)"/>
+                            <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1"
+                                  width="32" height="32"/>
                         </svg>
-                    {{ PROJECT_NAME }}</a>
+                        {{ PROJECT_NAME }}</a>
                 </div>
                 <div class="navbar-center hidden lg:flex">
                     <ul class="menu menu-horizontal px-1">
@@ -82,7 +68,10 @@
                     </ul>
                 </div>
                 <div class="navbar-end">
+
                     <a class="btn" href="{% url 'dashboard:dashboard' %}">Orbiter starten</a>
+                    <a class="btn btn-primary ml-8" href="/dj-admin">Django-Admin</a>
+
                 </div>
             </div>
         </header>
@@ -90,7 +79,8 @@
         <div class="hero bg-base-100 mt-8">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_4.png' %}"
-                     class="max-w-sm rounded-lg shadow-2xl" />
+                     alt="Illustration eines Satelliten"
+                     class="max-w-sm rounded-lg shadow-2xl"/>
                 <div>
                     <h1 class="text-5xl font-bold">{{ PROJECT_NAME }}: Erkunde den Fachkräftebedarf</h1>
                     <p class="py-6">Mit wenigen Klicks kannst du den Fachkräftebedarf in deiner Region erkunden.</p>
@@ -99,7 +89,7 @@
             </div>
         </div>
         <!-- Main section -->
-        {% comment %} TODO Hide this panel {% endcomment %}
+        {% comment %} TODO Hide this panel
         <div class="prose lg:prose-xl mt-24">
             <h2>Admin-Panel zum schnellen Navigieren</h2>
         </div>
@@ -109,116 +99,117 @@
                 <h3>Pages</h3>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <td>Page</td>
-                            <td>Detail</td>
-                        </tr>
+                    <tr>
+                        <td>Page</td>
+                        <td>Detail</td>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <a class="link" href="/dashboard/">Opportunity Orbiter Dashboard/</a>
-                            </td>
-                            <td>Dashboard</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/dj-admin/">dj-admin</a>
-                            </td>
-                            <td>Django admin</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/accounts/signup/">accounts/signup</a>
-                            </td>
-                            <td>Sign up page</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/accounts/login/">accounts/login</a>
-                            </td>
-                            <td>Sign in page</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/accounts/password/reset">accounts/password/reset</a>
-                            </td>
-                            <td>Reset password</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/accounts/settings/">settings</a>
-                            </td>
-                            <td>Settings page</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/feedback/">feedback</a>
-                            </td>
-                            <td>Feedback form</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/terms/">terms</a>
-                            </td>
-                            <td>Terms (requires adding a flatpage)</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/silk/">silk</a>
-                            </td>
-                            <td>Silk profiling tool</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/api/redoc/">api/redoc</a>
-                            </td>
-                            <td>API docs</td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a class="link" href="/dashboard/">Opportunity Orbiter Dashboard/</a>
+                        </td>
+                        <td>Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/dj-admin/">dj-admin</a>
+                        </td>
+                        <td>Django admin</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/accounts/signup/">accounts/signup</a>
+                        </td>
+                        <td>Sign up page</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/accounts/login/">accounts/login</a>
+                        </td>
+                        <td>Sign in page</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/accounts/password/reset">accounts/password/reset</a>
+                        </td>
+                        <td>Reset password</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/accounts/settings/">settings</a>
+                        </td>
+                        <td>Settings page</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/feedback/">feedback</a>
+                        </td>
+                        <td>Feedback form</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/terms/">terms</a>
+                        </td>
+                        <td>Terms (requires adding a flatpage)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/silk/">silk</a>
+                        </td>
+                        <td>Silk profiling tool</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/api/redoc/">api/redoc</a>
+                        </td>
+                        <td>API docs</td>
+                    </tr>
                     </tbody>
                 </table>
                 <h3>API endpoints</h3>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <td>Endpoint</td>
-                            <td>Detail</td>
-                        </tr>
+                    <tr>
+                        <td>Endpoint</td>
+                        <td>Detail</td>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <a href="/api/token-auth/">api/token-auth</a>
-                            </td>
-                            <td>Token authentication</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/api/protected/">api/protected</a>
-                            </td>
-                            <td>Example endpoint that requires token to be accessed</td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a href="/api/token-auth/">api/token-auth</a>
+                        </td>
+                        <td>Token authentication</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/api/protected/">api/protected</a>
+                        </td>
+                        <td>Example endpoint that requires token to be accessed</td>
+                    </tr>
                     </tbody>
                 </table>
                 <h3>Tools</h3>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <td>Tool</td>
-                            <td>Detail</td>
-                        </tr>
+                    <tr>
+                        <td>Tool</td>
+                        <td>Detail</td>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <a href="http://localhost:8025">mailhog</a>
-                            </td>
-                            <td>Mailhog (has to be started via Docker Compose)</td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a href="http://localhost:8025">mailhog</a>
+                        </td>
+                        <td>Mailhog (has to be started via Docker Compose)</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </section>
+        {% endcomment %}
         <!--  3 Card section -->
         <div class="prose lg:prose-xl mt-24">
             <h2>Funktionen</h2>
@@ -228,12 +219,16 @@
             <div class="card w-96 bg-base-100 shadow-xl" id="daten">
                 <figure>
                     <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_1.png' %}"
-                         alt="Bild eines Satelliten" />
+                         alt="Bild eines Satelliten"/>
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title">IT-Job-Scanner</h2>
                     <p>
-                        Entdecken Sie mit unserem spezialisierten Webcrawler die neuesten IT-Jobtrends im Berliner Raum. Wir erfassen gezielt Informationen aus Startups, Unternehmen und Beratungen, um Ihnen die aktuellsten Marktchancen zu bieten.
+                        Entdecken Sie mit unserem spezialisierten Webcrawler die neuesten IT-Jobtrends im Berliner Raum.
+                        Wir
+                        erfassen gezielt Informationen aus Startups, Unternehmen und Beratungen, um Ihnen die
+                        aktuellsten
+                        Marktchancen zu bieten.
                     </p>
                     <div class="card-actions justify-end">
                         <div class="badge badge-outline">Daten</div>
@@ -243,12 +238,16 @@
             <div class="card w-96 bg-base-100 shadow-xl" id="analyse">
                 <figure>
                     <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
-                         alt="Bild eines Statelliten" />
+                         alt="Bild eines Statelliten"/>
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title">Trend-Decoder</h2>
                     <p>
-                        Unser System nutzt fortschrittliche LLM-Technologien, um aus den gesammelten Jobdaten tiefgreifende Einsichten in die IT-Branche zu gewinnen. Erkennen Sie mit uns makroökonomische Entwicklungen und Branchentrends, die Ihre Entscheidungen prägen.
+                        Unser System nutzt fortschrittliche LLM-Technologien, um aus den gesammelten Jobdaten
+                        tiefgreifende
+                        Einsichten in die IT-Branche zu gewinnen. Erkennen Sie mit uns makroökonomische Entwicklungen
+                        und
+                        Branchentrends, die Ihre Entscheidungen prägen.
                     </p>
                     <div class="card-actions justify-end">
                         <div class="badge badge-outline">Analyse</div>
@@ -258,12 +257,16 @@
             <div class="card w-96 bg-base-100 shadow-xl" id="empfehlungen">
                 <figure>
                     <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_3.png' %}"
-                         alt="Bild eines Satelliten" />
+                         alt="Bild eines Satelliten"/>
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title">Navigationssystem</h2>
                     <p>
-                        Basierend auf unseren präzisen Analysen liefern wir Ihnen handfeste Empfehlungen. Nutzen Sie unsere Erkenntnisse, um strategische Entscheidungen zu treffen, die von aktuellen Marktveränderungen und politischen Entwicklungen beeinflusst werden.
+                        Basierend auf unseren präzisen Analysen liefern wir Ihnen handfeste Empfehlungen. Nutzen Sie
+                        unsere
+                        Erkenntnisse, um strategische Entscheidungen zu treffen, die von aktuellen Marktveränderungen
+                        und
+                        politischen Entwicklungen beeinflusst werden.
                     </p>
                     <div class="card-actions justify-end">
                         <div class="badge badge-outline">Empfehlungen</div>
@@ -280,108 +283,134 @@
                 <div>
                     <figure>
                         <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_4.png' %}"
-                             alt="Bild eines Satelliten" />
-                    </img>
-                </figure>
-            </div>
-            <div>
-                <div class="join join-vertical w-full">
-                    <div class="collapse collapse-arrow join-item border border-base-300">
-                        <input type="radio" name="my-accordion-4" checked="checked" />
-                        <div class="collapse-title text-xl font-medium">Wie aktuell sind die von Opportunity Orbiter erfassten Jobdaten?</div>
-                        <div class="collapse-content">
-                            <p>
-                                Unsere Daten sind höchst aktuell, da unser spezialisierter Webcrawler kontinuierlich das Internet durchsucht und die neuesten IT-Jobanzeigen aus dem Berliner Raum erfasst. Wir aktualisieren unsere Datenbasis regelmäßig, um sicherzustellen, dass Sie immer die neuesten Informationen erhalten.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="collapse collapse-arrow join-item border border-base-300">
-                        <input type="radio" name="my-accordion-4" />
-                        <div class="collapse-title text-xl font-medium">
-                            Inwiefern kann Opportunity Orbiter makroökonomische Trends genau vorhersagen?
-                        </div>
-                        <div class="collapse-content">
-                            <p>
-                                Die Genauigkeit unserer Vorhersagen zu makroökonomischen Trends hängt von verschiedenen Faktoren ab, einschließlich der Qualität und des Umfangs der gesammelten Daten sowie der Leistungsfähigkeit des verwendeten LLM. Wir streben danach, aussagekräftige Trends und Muster zu identifizieren, aber es ist wichtig zu verstehen, dass solche Vorhersagen Wahrscheinlichkeiten sind und nicht als absolute Gewissheiten betrachtet werden sollten.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="collapse collapse-arrow join-item border border-base-300">
-                        <input type="radio" name="my-accordion-4" />
-                        <div class="collapse-title text-xl font-medium">
-                            Kann Opportunity Orbiter individuelle Beratung oder maßgeschneiderte Empfehlungen für mein Unternehmen bieten?
-                        </div>
-                        <div class="collapse-content">
-                            <p>
-                                Nein, Opportunity Orbiter konzentriert sich primär auf die allgemeine Analyse von IT-Jobtrends und makroökonomischen Entwicklungen im Berliner Raum. Während unsere Plattform wertvolle Einblicke und allgemeine Markttrends liefert, bieten wir keine individuelle Beratung oder maßgeschneiderte Empfehlungen für spezifische Unternehmen an.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="prose lg:prose-xl mt-24">
-            <h2 id="ueber-uns">Über uns</h2>
-        </div>
-        <div>
-            <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
-                <div class="prose lg:prose-xl">
-                    <p>Der Opportunity Orbiter ist ein Projekt von</p>
-                    <ul>
-                        <li>Alexander Werner Krüger</li>
-                        <li>Quirin Johannes Koch</li>
-                    </ul>
+                             alt="Bild eines Satelliten"/>
+                        </img>
+                    </figure>
                 </div>
                 <div>
-                    <figure>
-                        <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
-                             alt="Bild eines Satelliten" />
-                    </img>
-                </figure>
+                    <div class="join join-vertical w-full">
+                        <div class="collapse collapse-arrow join-item border border-base-300">
+                            <input type="radio" name="my-accordion-4" checked="checked"/>
+                            <div class="collapse-title text-xl font-medium">Wie aktuell sind die von Opportunity Orbiter
+                                erfassten Jobdaten?
+                            </div>
+                            <div class="collapse-content">
+                                <p>
+                                    Unsere Daten sind höchst aktuell, da unser spezialisierter Webcrawler kontinuierlich
+                                    das
+                                    Internet durchsucht und die neuesten IT-Jobanzeigen aus dem Berliner Raum erfasst.
+                                    Wir
+                                    aktualisieren unsere Datenbasis regelmäßig, um sicherzustellen, dass Sie immer die
+                                    neuesten
+                                    Informationen erhalten.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="collapse collapse-arrow join-item border border-base-300">
+                            <input type="radio" name="my-accordion-4"/>
+                            <div class="collapse-title text-xl font-medium">
+                                Inwiefern kann Opportunity Orbiter makroökonomische Trends genau vorhersagen?
+                            </div>
+                            <div class="collapse-content">
+                                <p>
+                                    Die Genauigkeit unserer Vorhersagen zu makroökonomischen Trends hängt von
+                                    verschiedenen
+                                    Faktoren ab, einschließlich der Qualität und des Umfangs der gesammelten Daten sowie
+                                    der
+                                    Leistungsfähigkeit des verwendeten LLM. Wir streben danach, aussagekräftige Trends
+                                    und
+                                    Muster zu identifizieren, aber es ist wichtig zu verstehen, dass solche Vorhersagen
+                                    Wahrscheinlichkeiten sind und nicht als absolute Gewissheiten betrachtet werden
+                                    sollten.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="collapse collapse-arrow join-item border border-base-300">
+                            <input type="radio" name="my-accordion-4"/>
+                            <div class="collapse-title text-xl font-medium">
+                                Kann Opportunity Orbiter individuelle Beratung oder maßgeschneiderte Empfehlungen für
+                                mein
+                                Unternehmen bieten?
+                            </div>
+                            <div class="collapse-content">
+                                <p>
+                                    Nein, Opportunity Orbiter konzentriert sich primär auf die allgemeine Analyse von
+                                    IT-Jobtrends und makroökonomischen Entwicklungen im Berliner Raum. Während unsere
+                                    Plattform
+                                    wertvolle Einblicke und allgemeine Markttrends liefert, bieten wir keine
+                                    individuelle
+                                    Beratung oder maßgeschneiderte Empfehlungen für spezifische Unternehmen an.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="prose lg:prose-xl mt-24">
+                <h2 id="ueber-uns">Über uns</h2>
+            </div>
+            <div>
+                <div class="grid grid-cols-1 md:grid-cols-2 mt-8 space-x-12">
+                    <div class="prose lg:prose-xl">
+                        <p>Der Opportunity Orbiter ist ein Projekt von</p>
+                        <ul>
+                            <li>Alexander Werner Krüger</li>
+                            <li>Quirin Johannes Koch</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <figure>
+                            <img src="{% static 'images/minimalist_satellite_depicted_in_a_flat_line_style_2.png' %}"
+                                 alt="Bild eines Satelliten"/>
+                            </img>
+                        </figure>
+                    </div>
+                </div>
+                <!-- Footer section -->
+                <footer class="footer p-10 bg-base-300 text-base-content mt-32">
+                    <nav>
+                        <header class="footer-title">
+                            Funktionen
+                        </header>
+                        <a class="link link-hover">Daten</a>
+                        <a class="link link-hover">Analyse</a>
+                        <a class="link link-hover">Empfehlungen</a>
+                    </nav>
+                    <nav>
+                        <header class="footer-title">
+                            Organisation
+                        </header>
+                        <a class="link link-hover">Über uns</a>
+                        <a class="link link-hover">Kontakt</a>
+                        <a class="link link-hover">Pressekit</a>
+                    </nav>
+                    <nav>
+                        <header class="footer-title">
+                            Rechtliches
+                        </header>
+                        <a class="link link-hover">Impressum</a>
+                        <a class="link link-hover">AGB</a>
+                        <a class="link link-hover">Datenschutz</a>
+                    </nav>
+                    <form>
+                        <header class="footer-title">
+                            Newsletter
+                        </header>
+                        <fieldset class="form-control w-80">
+                            <label class="label">
+                                <span class="label-text">E-Mail-Adresse eingeben</span>
+                            </label>
+                            <div class="join">
+                                <input type="text"
+                                       placeholder="name@website.com"
+                                       class="input input-bordered join-item"/>
+                                <button class="btn btn-default join-item">Zum Newsletter anmelden</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </footer>
             </div>
         </div>
-        <!-- Footer section -->
-        <footer class="footer p-10 bg-base-300 text-base-content mt-32">
-            <nav>
-                <header class="footer-title">
-                    Funktionen
-                </header>
-                <a class="link link-hover">Daten</a>
-                <a class="link link-hover">Analyse</a>
-                <a class="link link-hover">Empfehlungen</a>
-            </nav>
-            <nav>
-                <header class="footer-title">
-                    Organisation
-                </header>
-                <a class="link link-hover">Über uns</a>
-                <a class="link link-hover">Kontakt</a>
-                <a class="link link-hover">Pressekit</a>
-            </nav>
-            <nav>
-                <header class="footer-title">
-                    Rechtliches
-                </header>
-                <a class="link link-hover">Impressum</a>
-                <a class="link link-hover">AGB</a>
-                <a class="link link-hover">Datenschutz</a>
-            </nav>
-            <form>
-                <header class="footer-title">
-                    Newsletter
-                </header>
-                <fieldset class="form-control w-80">
-                    <label class="label">
-                        <span class="label-text">E-Mail-Adresse eingeben</span>
-                    </label>
-                    <div class="join">
-                        <input type="text"
-                               placeholder="name@website.com"
-                               class="input input-bordered join-item" />
-                        <button class="btn btn-default join-item">Zum Newsletter anmelden</button>
-                    </div>
-                </fieldset>
-            </form>
-        </footer>
     </div>
+
 {% endblock content %}

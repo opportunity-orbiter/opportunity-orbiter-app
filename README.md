@@ -20,17 +20,17 @@ Quirin Johannes Koch
 
 ## Technologien
 
-Das Projekt basiert auf einer Paketzusammenstellung von Petr Stribny <petr@stribny.name> im Rahmen seines [Sidewinder-Starter-Projekts](https://stribny.github.io/sidewinder/). Folgende Technologien werden in unserem Projekt primär eingesetzt:
+Das Projekt basiert auf einer Paketzusammenstellung von [Petr Stribny](petr@stribny.name) im Rahmen seines [Sidewinder-Starter-Projekts](https://stribny.github.io/sidewinder/). Folgende Technologien werden in unserem Projekt primär eingesetzt:
 
 ### Backend
 
 - Python 3.12
 - Django 5.0
 - Django REST Framework 3.14.0 (noch nicht implementiert)
-- huey 2.4.5 (noch nicht implementiert)
 
 ### Crawling
 
+- huey 2.4.5 (noch nicht implementiert)
 - playwright 1.40.0
 - beautifulsoup4 4.12.2
 - langchain 0.1.0
@@ -40,4 +40,4 @@ Das Projekt basiert auf einer Paketzusammenstellung von Petr Stribny <petr@strib
 
 - DaisyUI 2.6.0
 - TailwindCSS 3.0.23
-- HTMX 1.6.1
+- HTMX 1.6.1 (noch nicht implementiert)

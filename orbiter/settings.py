@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
-PROJECT_NAME = env.str("PROJECT_NAME", default="Sidewinder")
+PROJECT_NAME = env.str("PROJECT_NAME", default="Orbiter")
 
 DEBUG = env.bool("DJANGO_DEBUG")
 
@@ -163,7 +163,6 @@ if DEBUG and not SMTP_DEV:
     # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-
 if DEBUG:
     INTERNAL_IPS = [
         "127.0.0.1",
@@ -223,6 +222,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = env.str("ALLAUTH_ACCOUNT_EMAIL_SUBJECT_PREFIX")
+OPENAI_KEY = env.str("API_KEY_OPENAI")
 
 ACCOUNT_FORMS = {
     "login": "allauth.account.forms.LoginForm",
@@ -312,6 +312,7 @@ SHELL_PLUS_IMPORTS = [
     "from orbiter.core.services.email import EmailService",
 ]
 
+
 # Logging
 
 
@@ -343,15 +344,15 @@ shared_structlog_processors += conditional_processors
 
 structlog.configure(
     processors=[
-        structlog.stdlib.filter_by_level,
-        structlog.stdlib.PositionalArgumentsFormatter(),
-        structlog.processors.StackInfoRenderer(),
-        structlog.processors.UnicodeDecoder(),
-    ]
-    + shared_structlog_processors
-    + [
-        structlog.stdlib.ProcessorFormatter.wrap_for_formatter,
-    ],
+                   structlog.stdlib.filter_by_level,
+                   structlog.stdlib.PositionalArgumentsFormatter(),
+                   structlog.processors.StackInfoRenderer(),
+                   structlog.processors.UnicodeDecoder(),
+               ]
+               + shared_structlog_processors
+               + [
+                   structlog.stdlib.ProcessorFormatter.wrap_for_formatter,
+               ],
     logger_factory=structlog.stdlib.LoggerFactory(),
     cache_logger_on_first_use=True,
 )
