@@ -163,6 +163,12 @@ class CompanyDetailView(DetailView):
     ordering = ["-name"]
     paginate_by = 10
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.annotate(
+            jobs_count=Count("jobs")
+        )  # Hier wird 'jobs' durch den tatsächlichen Namen des Reverse-Relations-Felds von Job zu Company ersetzt
+
 
 class CompanyEditView(UpdateView):
     model = Company
@@ -243,15 +249,14 @@ class JobEditView(UpdateView):
 
 def crawling(request):
     if request.method == "POST":
-        job_portal_url = request.POST.get('job_portal_url')
-        company_id = request.POST.get('company_id')
+        job_portal_url = request.POST.get("job_portal_url")
+        company_id = request.POST.get("company_id")
         print(job_portal_url)
-        print(company_id )
+        print(company_id)
 
         # Trigger the asynchronous task
-        # async_task(job_portal_url)
 
-        asyncio.run(start_crawl_and_save(job_portal_url))
+        start_crawl_and_save(job_portal_url)
         return redirect("dashboard:dashboard")
 
     # The code here will be executed for GET requests or if the form is not submitted

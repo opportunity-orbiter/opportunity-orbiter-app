@@ -98,62 +98,6 @@ async def check_if_job_link(links):
     return job_urls
 
 
-async def check_if_job_link2(links):
-    llm = ChatOpenAI(
-        temperature=0, model="gpt-3.5-turbo-1106", openai_api_key=OPENAI_KEY
-    )
-    structured_schema = {
-        "properties": {
-            "video_name": {"type": "string"},
-            "views": {"type": "integer"},
-        },
-        "required": ["video_name", "views"],
-    }
-
-    # write a structured schema that extracts all links as enmus from the page giving the text of the link and the url
-
-    structured_schema = {
-        "properties": {
-            "jobs": {
-                "type": "array",
-                "description": "All jobs and their links on the page",
-                "items": {
-                    "properties": {
-                        "title": {
-                            "type": "string",
-                            "description": "The title of the job",
-                        },
-                        "url": {"type": "string", "description": "The url of the job"},
-                    },
-                },
-            },
-            "required": ["url", "title"],
-        }
-    }
-
-    structured_schema = {
-        "properties": {
-            "title": {"type": "string", "description": "The title of the job"},
-            "url": {"type": "string", "description": "The url of the job"},
-        },
-        "required": ["url", "title"],
-    }
-
-    # parser nutzen um die links zu extrahieren
-
-    extraction_chain = create_extraction_chain(
-        structured_schema,
-        llm,
-        verbose=True,
-    )
-
-    print("Extraction chain created")
-    chain_output = extraction_chain.invoke(links[2], verbose=True)
-
-    text_entries = chain_output.get("text", [])
-    print(text_entries)
-
-
 async def crawl_job(url):
     async with async_playwright() as p:
         print("crawl job")
@@ -272,8 +216,10 @@ async def process_job_text(job_text):
     return job_json
 
 
-async def save_job_from_json(job_json):
+def save_job_from_json(job_json):
     # Map JSON values to Job attributes
+    print(job_json)
+
     new_job = Job(
         title=job_json.get("title", "Your Job Title"),
         job_url=job_json.get("job_url", "https://example.com/job"),
@@ -298,21 +244,72 @@ async def save_job_from_json(job_json):
         # location_id=1,  # Replace with the actual ID of the location
     )
 
-    print("Job saved in the database")
-    asyncio.run(new_job.save())
+    print("Job is to be saved in the database")
+    print(new_job)
+    company = Company.objects.get(name__icontains="Tesla")
+    location = Location.objects.get(name__icontains="Berlin")
+    json = {
+        "job_url": "https://www.tesdadla.com/de_DE/careers/job/maintenance-planner-body-white-mwd-gigafactory-berlin-brandenburg-0",
+        "title": "Maintenance Planner, Body in White (m/w/d) - Gigafactory Berlin Brandenburg",
+        "category": "Manufacturing",
+        "company": company,
+        "location": location,
+        "type_of_contract": "Full-time",
+        "short_summary": "Maintenance planner position at Tesla's Gigafactory in Berlin-Brandenburg",
+        "tasks_and_responsibilities": [
+            "Managing workload and prioritizing work",
+            "Reviewing line-builder and OEM documentation",
+            "Implementing predictive maintenance projects",
+            "Leading root cause analysis teams",
+            "Auditing PM execution and accuracy",
+            "Supporting weekend and shutdown planning activities",
+            "Managing spares and spare parts inventory",
+        ],
+        "non_tech_skill_requirements": [
+            "Superior verbal and written communication skills"
+        ],
+        "tech_skill_requirements": [
+            "Data analysis and risk-based decision-making",
+            "TPM and/or autonomous maintenance knowledge",
+        ],
+        "minimal_experience_in_years": 3,
+        "maximal_experience_in_years": 5,
+        "salary_lower_bound": 0,
+        "salary_upper_bound": 0,
+        "start_date": "2021-10-01",
+        "leadership_role": False,
+        "team_size": 0,
+        "benefits": [
+            "Competitive salary",
+            "Tesla shares or bonuses",
+            "30 vacation days",
+            "Occupational pension",
+            "Employee life and disability insurances",
+            "Free EV charging",
+            "Product discounts",
+            "Various transportation benefits",
+        ],
+        "full_text": "Maintenance Planner, Body in White (m/w/d) - Gigafactory Berlin Brandenburg... (full job ad text)",
+    }
+
+    job_json["company"] = company
+    job_json["location"] = location
+    job_json["start_date"] = "2021-10-01"
+    job = Job(**job_json)
+    print(job)
+    job.save()
 
 
-async def start_crawl_and_save(job_portal_url):
-    links = await crawl_links_from_portal(job_portal_url)
-    job_links = await check_if_job_link(links)
+def start_crawl_and_save(job_portal_url):
+    links = asyncio.run(crawl_links_from_portal(job_portal_url))
+    job_links = asyncio.run(check_if_job_link(links))
 
-    tasks = []
     for job in job_links["text"][:5]:  # 5 iterations for testing. <---
         url = job.get("url", "")
-        job_text = await crawl_job(url)
-        job_json = await process_job_text(job_text)
-        task = asyncio.create_task(save_job_from_json(job_json))
-        tasks.append(task)
+        job_text = asyncio.run(crawl_job(url))
+        job_json = asyncio.run(process_job_text(job_text))
+        # task = asyncio.create_task(save_job_from_json(job_json))
+        # tasks.append(task)
+        save_job_from_json(job_json)
 
-    await asyncio.gather(*tasks)
     print("All jobs saved in the database")
