@@ -71,7 +71,7 @@ class Location(models.Model):
 
 class Job(models.Model):
     title = models.CharField(max_length=200)
-    job_url = models.URLField()
+    job_url = models.URLField(null=True, blank=True)
     category = models.CharField(max_length=100)
     short_summary = models.TextField(null=True, blank=True)
 
@@ -93,7 +93,7 @@ class Job(models.Model):
     # vacant since is the date on created on which the job was first posted
     vacant_since = models.DateField(auto_now_add=True, blank=True, null=True)
 
-    start_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField(auto_now_add=True, blank=True, null=True)
     offline_since = models.DateField(blank=True, null=True)
 
     # TODO das sollte irgendwann durch eine sich selbst pflegende Datenbank ersetzt werden

@@ -215,7 +215,7 @@ class LocationEditView(UpdateView):
     success_url = reverse_lazy("dashboard:location-list")
 
 
-# ----------Views JOBS ------------
+# ----------Views JOBS  ------------
 
 
 class JobCreateView(CreateView):
@@ -261,3 +261,4 @@ def crawling(request):
 
     # The code here will be executed for GET requests or if the form is not submitted
     return render(request, "crawling_template.html")
+
