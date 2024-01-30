@@ -230,7 +230,6 @@ class JobListView(ListView):
     template_name = "job_list.html"
     context_object_name = "jobs"
     ordering = ["id"]
-    paginate_by = 10
 
 
 class JobDetailView(DetailView):
@@ -261,4 +260,3 @@ def crawling(request):
 
     # The code here will be executed for GET requests or if the form is not submitted
     return render(request, "crawling_template.html")
-

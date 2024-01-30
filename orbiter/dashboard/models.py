@@ -85,10 +85,10 @@ class Job(models.Model):
     non_tech_skill_requirements = models.JSONField(blank=True, null=True)
 
     salary_lower_bound = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(0)]
+        max_digits=10, decimal_places=2, validators=[MinValueValidator(0)], null=True
     )
     salary_upper_bound = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(0)]
+        max_digits=10, decimal_places=2, validators=[MinValueValidator(0)], null=True
     )
     # vacant since is the date on created on which the job was first posted
     vacant_since = models.DateField(auto_now_add=True, blank=True, null=True)
