@@ -229,7 +229,8 @@ class JobListView(ListView):
     model = Job
     template_name = "job_list.html"
     context_object_name = "jobs"
-    ordering = ["id"]
+    # reverse id order
+    ordering = ["-id"]
 
 
 class JobDetailView(DetailView):

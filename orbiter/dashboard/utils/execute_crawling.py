@@ -57,6 +57,7 @@ async def crawl_links_from_portal(job_portal_url):
         data = "\n".join(chunk for chunk in chunks if chunk)
 
         await browser.close()
+    print(links)
     return data, page_source, links
 
 
@@ -85,18 +86,36 @@ async def check_if_job_link(links):
     }
 
     # parser nutzen um die links zu extrahieren
-    
+
     extraction_chain = create_extraction_chain(
         structured_schema,
         llm,
         verbose=True,
     )
 
-    # check the extraction chain on the first 20 objects in output[2]
-    print("text:")
-    job_urls = extraction_chain.invoke(links[2][0:5], verbose=True)
+    # check the extraction chain on the first 5 objects in output[2]
 
-    return job_urls
+    # job_urls = extraction_chain.invoke(links[2][0:5])
+    job_urls = extraction_chain.invoke(links[2][70:80])
+    print(job_urls)
+
+    # only return job_urls where link_is_an_individual_job_ad is true
+    # print every link that is not an individual job ad value
+    print("Das sind die Links, die ein Job sind")
+
+    job_urls_is_an_individual_job_ad = [
+        job for job in job_urls["text"] if job["link_is_an_individual_job_ad"] == True
+    ]
+    print(job_urls_is_an_individual_job_ad)
+
+    # print the opposite
+    print("Das sind die Links, die kein Job sind")
+    job_urls_is_not_an_individual_job_ad = [
+        job for job in job_urls["text"] if job["link_is_an_individual_job_ad"] == False
+    ]
+    print(job_urls_is_not_an_individual_job_ad)
+
+    return job_urls_is_an_individual_job_ad
 
 
 async def crawl_job(url):
@@ -175,7 +194,7 @@ async def process_job_text(job_text, url):
         )
 
         start_date: str = Field(
-            description="The starting date of the job",
+            description="The starting date of the job, only use a format to like YYYY-MM-DD to fill it in",
         )
 
         leadership_role: bool = Field(
@@ -211,17 +230,16 @@ async def process_job_text(job_text, url):
 
     job_json = chain.invoke(
         {"query": quality_evaluation_query, "input": job_text},
-        config={"callbacks": [ConsoleCallbackHandler()]},
+        # config={"callbacks": [ConsoleCallbackHandler()]},
     )
 
-    print("das ist die url " + url)
+    print("das ist die url aus process_job_text function " + url)
+    print(job_json)
     return job_json, url
 
 
 def save_job_from_json(job_json, url):
     # Map JSON values to Job attributes
-
-
 
     # new_job = Job(
     #     title = job_json["title"],
@@ -248,7 +266,6 @@ def save_job_from_json(job_json, url):
     #     location = Location.objects.get(name__icontains="Berlin")
 
     # )
-
 
     company = Company.objects.get(name__icontains="Tesla")
     location = Location.objects.get(name__icontains="Berlin")
@@ -295,19 +312,27 @@ def save_job_from_json(job_json, url):
     #     ],
     #     "full_text": "Maintenance Planner, Body in White (m/w/d) - Gigafactory Berlin Brandenburg... (full job ad text)",
     # }
-    
-    print("DAs hier ist das durch das LLM Modell")
+
+    print("DAs hier ist das durch das LLM Modell erstellt Job JSON")
     print(job_json)
+
+    print("Das hier ist das durch das LLM Modell übergebene URL")
+    print(url)
     job_json = job_json[0]
     # url = job_json[1]
 
     job_json["company"] = company
     job_json["location"] = location
     job_json["start_date"] = "2021-10-01"
-    job_json["job_url"] = "https://webmail.bht-berlin.de/"
+    # reset start date if it not uses the format YYYY-MM-DD
+    try:
+        datetime.datetime.strptime(job_json["start_date"], "%Y-%m-%d")
+    except ValueError:
+        job_json["start_date"] = datetime.datetime.now().date()
+    # fill start_date with today's date
+    # job_json["start_date"] = datetime.datetime.now().date()
+    job_json["job_url"] = url
     job_json["vacant_since"] = "2021-10-01"
-
-
 
     job = Job(**job_json)
 
@@ -318,12 +343,14 @@ def start_crawl_and_save(job_portal_url):
     links = asyncio.run(crawl_links_from_portal(job_portal_url))
     job_links = asyncio.run(check_if_job_link(links))
 
-    for job in job_links["text"][:2]:  # 5 iterations for testing. <---
+    for job in job_links[:2]:  # 2 iterations for testing. <---
         url = job.get("url", "")
         job_text = asyncio.run(crawl_job(url))
         job_json = asyncio.run(process_job_text(job_text, url))
         # task = asyncio.create_task(save_job_from_json(job_json))
         # tasks.append(task)
+        print("Das ist die URL aus der Start_Crawl_and_save Funktion")
+        print(url)
         save_job_from_json(job_json, url)
 
     print("All jobs saved in the database")

@@ -99,11 +99,11 @@ class Job(models.Model):
     # TODO das sollte irgendwann durch eine sich selbst pflegende Datenbank ersetzt werden
     benefits = models.JSONField(blank=True, null=True)
 
-    minimal_experience_in_years = models.PositiveIntegerField()
-    maximal_experience_in_years = models.PositiveIntegerField()
+    minimal_experience_in_years = models.PositiveIntegerField(null=True)
+    maximal_experience_in_years = models.PositiveIntegerField(null=True)
 
     leadership_role = models.BooleanField(default=False)
-    team_size = models.PositiveIntegerField()
+    team_size = models.PositiveIntegerField(null=True, blank=True)
 
     full_text = models.TextField()
 
@@ -113,7 +113,7 @@ class Job(models.Model):
         "Company", on_delete=models.CASCADE, related_name="jobs"
     )
     location = models.ForeignKey(
-        "Location", on_delete=models.CASCADE, related_name="jobs"
+        "Location", on_delete=models.CASCADE, related_name="jobs", null=True
     )
 
     last_crawled_date = models.DateField(auto_now=True)
